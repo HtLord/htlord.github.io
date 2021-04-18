@@ -21,7 +21,7 @@
 title: HtLord 學習日誌
 email: s75757775@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  紀錄學習歷程，能提高之後重新審視的速度。分享心得，有任何的建議都可以到這個專案下的 issue 區許願、爭論、修正，等等。
+  木牌工程師爬分日誌
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  HtLord
@@ -30,6 +30,9 @@ github_username:  HtLord
 theme: minima
 plugins:
   - jekyll-feed
+
+# Post configration
+paginate: 5
 
 # Exclude from processing.
 # The following items will not be processed, by default.
