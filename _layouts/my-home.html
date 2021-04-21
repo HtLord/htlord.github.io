@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link ref="stylesheet" href="/assets/css/components.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+</head>
+<body>
+<div class="site-header">
+    <div class="wrapper">
+        <h1 class="site-title">{{ page.title }}</h1>
+        <nav class="site-nav">
+            {% for trigger in site.data.meta.triggers %}
+            <a class="ht-link" href={{ trigger.href }}>{{ trigger.name }}</a>
+            {% endfor %}
+        </nav>
+    </div>
+</div>
+<main class="page-content">
+        {% assign new_posts = site.posts reverse | slice: 1, 5 %}
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+                最新文章
+            </div>
+            <ul class="list-group list-group-flush">
+                {% for post in new_posts %}
+                    <li class="list-group-item">{{ post.title }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+</main>
+<footer class="wrapper">
+    <div class="footer-heading">
+        {{ title }}
+    </div>
+    <div class="footer-col-wrapper">
+        <div class="footer-col">
+            <div class="footer-col-2">
+                <ul class="social-media-list">
+                    <li>
+                        <a href="https://github.com/HtLord">
+                            <svg class="svg-icon">
+                                <use xlink:href="/assets/minima-social-icons.svg#github"></use>
+                            </svg>
+                            <span class="username">HtLord</span>
+                        </a>
+                        <a href="https://github.com/HtLord">
+                            <svg class="svg-icon">
+                                <use xlink:href="/assets/minima-social-icons.svg#gmail"></use>
+                            </svg>
+                            <span class="username">HtLord</span>
+                        </a>
+                    </li>
+                    <li>
+                        b
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,13 @@
+.ht-chip {
+  display: inline-block;
+  background: cornflowerblue;
+  padding: 0 8px;
+  border: solid black 2px;
+  border-radius: 32px;
+  font-size: 16px;
+  color: black;
+}
+
+.ht-link {
+  padding: 16px;
+}

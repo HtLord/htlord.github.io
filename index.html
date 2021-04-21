@@ -1,0 +1,17 @@
+---
+layout: home
+title: HtLord 學習日誌
+---
+<!-- This loops through the paginated posts -->
+<body>
+<!-- Pagination links -->
+<div class="pagination">
+    <a href="{{ paginator.previous_page_path }}" class="previous">
+        Previous
+    </a>
+    <span class="page_number ">
+    {{ paginator.page }} of {{ paginator.total_pages }}
+  </span>
+    <a href="{{ paginator.next_page_path }}" class="next">Next</a>
+</div>
+</body>
