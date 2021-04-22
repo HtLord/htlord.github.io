@@ -95,6 +95,35 @@ revision: 1, 2021-04-17
   # http://hello.github.io/hello/world
   # http://hello.github.io/hello/world2
   ```
+  
+### Posts
+
+### Front Matter
+就是該檔案的 metadata，一班會被放在 mardkwon or html 於 posts or layouts 使用。他是 yaml 格式，且會被 Jekyll 解析並做一些事情。
+看起來會如下方範例
+```yaml
+---
+layout: post
+title: Hello Jekyll
+categories: hello
+published: false
+permalink: /hello/world
+myVariables: hello world
+---
+your contents
+```
+
+| Front Matter Key | Value Means | Comments |
+| :---: | --- | --- |
+| layout | 你可以使用原生定義好，或者是 plugin 的 layout，或這你可以用你自己定義的 html 來使用它 | |
+| title | 在作為 posts 的 front matter 用 default, post 他會自動用此作為標題顯示 | |
+| categories | 會自動幫你 url 幫你多分類一層 | |
+| permalink | 自定義這個頁面的 url，更多設定值可以在下方連結查詢 | |
+| myVariables | 這不一定要叫這個名稱，但是他代表你下方使用到的 Liquid 語法可以使用的變數名稱，至於內容就會等同於你設定的 value | |
+
+> 這個 Yaml block 的內容都可以在文件後面的 Liquid 做使用
+
+> [Front Matter](https://jekyllrb.com/docs/front-matter/)
 
 ### Variables
 如果你有自行定義 layout 的需求，那你會需要搭配 variable 清單一起使用，來操做 site, post, page, data, etc,. 。
