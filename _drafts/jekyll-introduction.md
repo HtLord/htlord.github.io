@@ -13,7 +13,7 @@ revision: 1, 2021-04-17
 ### Index
 - 安裝開發環境
 - Jekyll
-  - ⭐ Directory Structure
+  - ⭐ [Directory Structure](#directory-structure)
   - ⭐ Page
   - ⭐ Post
   - ⭐ Front Matter
@@ -63,7 +63,7 @@ revision: 1, 2021-04-17
   export PATH=$HOME/gems/bin:$PATH
   ```
 
-### Directory structure
+### <a name="directory-structure"></a>Directory structure
 這邊會提供幾項我個人覺得實用的項目，跟注意事項。jekyll 特殊用途的檔案夾，會以 `_`(underscore) 表示。
 
 | Directory Name | Directory Functionality | Comments |
