@@ -30,6 +30,7 @@ github_username:  HtLord
 theme: minima
 plugins:
   - jekyll-feed
+  - jemoji
 
 # Post configration
 paginate: 5

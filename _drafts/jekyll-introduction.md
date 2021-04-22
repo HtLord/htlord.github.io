@@ -13,17 +13,18 @@ revision: 1, 2021-04-17
 ### Index
 - 安裝開發環境
 - Jekyll
-  - Directory Structure
-  - Page
-  - Post
-  - Front Matter
+  - ⭐ Directory Structure
+  - ⭐ Page
+  - ⭐ Post
+  - ⭐ Front Matter
   - Collection
   - Data File
   - Asset
   - Static File
+  - ⭐ Variables
 - Liquid
-  - Tags
-  - Filters
+  - ⭐ Tags
+  - ⭐ Filters
 
 ### 安裝開發環境
 - 安裝 Ruby，這邊就不詳細說明了。
@@ -63,8 +64,42 @@ revision: 1, 2021-04-17
   ```
 
 ### Directory structure
+這邊會提供幾項我個人覺得實用的項目，跟注意事項。jekyll 特殊用途的檔案夾，會以 `_`(underscore) 表示。
 
+| Directory Name | Directory Functionality | Comments |
+|:---:|:---|:---|
+| _drafts | 文章草稿可以放在這裡，他不會被發布，需執行 `bundle exec jekyll serve --drafts` 或 `bundle exec jekyll build --draft` 才會出現在文章列表當中 | 裡面的文章命名不能帶日期 |
+| _posts | 文章需要跟著命名規則，`<yyyy>-<mm>-<dd>-<your-article-name>.md` or html | |
+| _layouts | 自定義的 html 樣板可以讓你快速利用 markdown, site data 替換資料 |  |
+| _data | 自定義的文字型的資料，可存為 yaml, json, csv, tsv，用法為 `site.data.<file-name>` 搭配 Liquid Tag, Filter 一起使用 | |
+| _site | 工具 build 的結果會輸出到這個資料夾，要加入 `.gitignore` 中，已防預期外的結果 | |
+| assets | 個人使用偏好，是個普通的資料夾 | 把一些 css, images, etc,. 檔案丟到這邊一併管理 |
 
+> [Directory Structure](https://jekyllrb.com/docs/structure/)
+
+### Pages
+分頁意味著你有多個頁面可以放不同的內容，是用來擴展你的部落格的豐富性，讓他不只有文章的功能。比方說你想要由 `hello.github.io/hello` 
+提供一些內容，這時候你就會需要分頁功能了。這邊你有 2 種方式來定義你的分頁。
+- 定義你有多個頁面可以進行跳轉，直接加入 markdown or html 於 project root 底下就可以了。
+- 或是開立一個不包含 `.`, `_`, `#`, `~` 的檔案夾名稱，裡面放 markdown or html，只要 url 後面加上 
+  `/<directory>/<file-name-and-extesion>` 就可以呈現該頁面。
+  ```
+  --- your-project-directory
+   |_ _post
+   |_ _site
+   |- hello
+       |_ world.html
+       |_ world2.md
+   |_ ...
+  
+  # http://hello.github.io/hello/world
+  # http://hello.github.io/hello/world2
+  ```
+
+### Variables
+如果你有自行定義 layout 的需求，那你會需要搭配 variable 清單一起使用，來操做 site, post, page, data, etc,. 。
+
+> [Variables](https://jekyllrb.com/docs/variables/)
   
 ### Cautions
 由於是部署在 Github Page 上的免費版本，你需要跟上 Github Page 上發佈的版本，此外，你還需要有一個名為 <your-github-name>.github.io
