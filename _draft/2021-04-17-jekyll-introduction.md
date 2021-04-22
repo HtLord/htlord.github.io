@@ -61,6 +61,13 @@ revision: 1, 2021-04-17
   export GEM_HOME=$HOME/gems
   export PATH=$HOME/gems/bin:$PATH
   ```
+
+---
+
+### Jekyll
+
+---
+
   
 ### Cautions
 由於是部署在 Github Page 上的免費版本，你需要跟上 Github Page 上發佈的版本，此外，你還需要有一個名為 <your-github-name>.github.io
