@@ -1,19 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-04-22T20:39:16+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">HtLord 學習日誌</title><subtitle>木牌工程師爬分日誌</subtitle><entry><title type="html">Ad Test</title><link href="http://localhost:4000/2021/04/22/ad-test.html" rel="alternate" type="text/html" title="Ad Test" /><published>2021-04-22T00:00:00+08:00</published><updated>2021-04-22T00:00:00+08:00</updated><id>http://localhost:4000/2021/04/22/ad-test</id><content type="html" xml:base="http://localhost:4000/2021/04/22/ad-test.html">&lt;!doctype html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;script async src=&quot;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8697254459144678&quot;
-            crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
-    &lt;ins class=&quot;adsbygoogle&quot;
-         style=&quot;display:block; text-align:center;&quot;
-         data-ad-layout=&quot;in-article&quot;
-         data-ad-format=&quot;fluid&quot;
-         data-ad-client=&quot;ca-pub-8697254459144678&quot;
-         data-ad-slot=&quot;8452832131&quot;&gt;&lt;/ins&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-04-22T21:11:51+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">HtLord 學習日誌</title><subtitle>木牌工程師爬分日誌</subtitle><entry><title type="html">test Ad</title><link href="http://localhost:4000/2021/04/22/ad-test.html" rel="alternate" type="text/html" title="test Ad" /><published>2021-04-22T00:00:00+08:00</published><updated>2021-04-22T00:00:00+08:00</updated><id>http://localhost:4000/2021/04/22/ad-test</id><content type="html" xml:base="http://localhost:4000/2021/04/22/ad-test.html">&lt;head&gt;
+    &lt;script async=&quot;&quot; src=&quot;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8697254459144678&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+
     &lt;script&gt;
         (adsbygoogle = window.adsbygoogle || []).push({});
     &lt;/script&gt;
 &lt;/head&gt;
-&lt;body&gt;
+&lt;p&gt;Test Ad&lt;/p&gt;
 
-&lt;/body&gt;
-&lt;/html&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>
+&lt;p&gt;&lt;ins class=&quot;adsbygoogle&quot; style=&quot;display:block; text-align:center;&quot; data-ad-layout=&quot;in-article&quot; data-ad-format=&quot;fluid&quot; data-ad-client=&quot;ca-pub-8697254459144678&quot; data-ad-slot=&quot;8452832131&quot;&gt;&lt;/ins&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>
