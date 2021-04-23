@@ -97,6 +97,8 @@ revision: 1, 2021-04-17
   ```
   
 ### Posts
+markdown or html 都可以，前面可以加上 Front Matter 做一些操作給 Jekyll 控制，或在 Liquid 中使用。必須符合 
+`<yyyy>-<mm>-<dd>-<artical-name>`.md 或 `<yyyy>-<mm>-<dd>-<artical-name>`.html 的格式。 
 
 ### Front Matter
 就是該檔案的 metadata，一班會被放在 mardkwon or html 於 posts or layouts 使用。他是 yaml 格式，且會被 Jekyll 解析並做一些事情。
@@ -126,7 +128,7 @@ your contents
 > [Front Matter](https://jekyllrb.com/docs/front-matter/)
 
 ### Variables
-如果你有自行定義 layout 的需求，那你會需要搭配 variable 清單一起使用，來操做 site, post, page, data, etc,. 。
+如果你有自行定義 layout 的需求，那你會需要搭配 variable 清單一起使用，來操作 site, post, page, data, etc,. 。
 
 > [Variables](https://jekyllrb.com/docs/variables/)
   
