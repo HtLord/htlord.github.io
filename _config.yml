@@ -30,10 +30,12 @@ github_username:  HtLord
 theme: minima
 plugins:
   - jekyll-feed
-  - jemoji
 
-# Post configration
-paginate: 5
+defaults:
+  - scope:
+      path: "assets/img/blog-category-icon"
+    values:
+      image: true
 
 # Exclude from processing.
 # The following items will not be processed, by default.
