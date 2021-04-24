@@ -1,0 +1,39 @@
+images:
+  - category: OS
+    items:
+    - title: MacOS
+      src: /assets/img/blog-category-icon/apple.png
+      url: /blog/os/apple
+    - title: Linux
+      src: /assets/img/blog-category-icon/linux.png
+      url: /blog/os/linux
+    - title: Windows
+      src: /assets/img/blog-category-icon/windows.png
+      url: /blog/os/windows
+  - category: Languages
+    items:
+    - title: Golang
+      src: /assets/img/blog-category-icon/golang.png
+      url: /blog/languages/python
+    - title: JavaScript
+      src: /assets/img/blog-category-icon/javascript.png
+      url: /blog/languages/python
+    - title: Java
+      src: /assets/img/blog-category-icon/java.png
+      url: /blog/languages/python
+    - title: Python
+      src: /assets/img/blog-category-icon/python.png
+      url: /blog/languages/python
+  - category: CNCF
+    items:
+    - title: Kubernetes
+      src: /assets/img/blog-category-icon/kubernetes.png
+      url: /blog/cncf/k8s
+    - title: Docker
+      src: /assets/img/blog-category-icon/docker.png
+      url: /blog/cncf/docker
+  - category: Others
+    items:
+    - title: Git
+      src: /assets/img/blog-category-icon/git.png
+      url: /blog/others/git
