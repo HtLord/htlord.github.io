@@ -1,7 +1,7 @@
 ---
 layout: post
 title: K8s 入門 
-categories: k8s
+tags: k8s
 published: true
 ---
 

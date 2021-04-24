@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 切換 Python 版本 MacOS with Homebrew
-categories: python
+tags: python
 published: true
 ---
 
