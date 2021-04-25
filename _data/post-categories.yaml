@@ -3,7 +3,7 @@ images:
     items:
     - title: MacOS
       src: /assets/img/blog-category-icon/apple.png
-      url: /blog/os/apple
+      url: /blog/os/mac
     - title: Linux
       src: /assets/img/blog-category-icon/linux.png
       url: /blog/os/linux
