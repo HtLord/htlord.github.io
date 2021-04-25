@@ -2,7 +2,6 @@
 layout: main-frame
 title: K8s 入門 
 tags: k8s
-published: true
 ---
 
 ### 概念
@@ -50,43 +49,45 @@ published: true
 1. 接著到 GKE &gt; Cluster 來設定你的 K8s 會使用到的 Node，在這邊，你可以選擇你的服務區域，跟你想要的 Node 數量、機器的等級（CPU cores, Memory size, Disk type, Disk size）、GCP 其他服的權限、K8s labels、etc,.至於其他項目，可以根據你自己的需求依序慢慢研究，基本上，你可以先都不做設定就可以開始操作了。
 1. 現在你已經可以只靠著 gcloud, kubectl 來部署 K8s resources 了。
 1. 開始部署 K8s resource 之前，你需要由 `gcloud` 取得 cluster config(context), credential。
-    1.	```bash
-       	gcloud auth login
-       	```
-       	在 terminal 執行這到指另，他會轉跳到瀏覽器，並要求你登入 google 帳號。注意要登對帳號，包含前面你剛才創建的 cluster 即可。
-    1.	```bash
-    	# gcloud container clusters get-credentials <your-cluster-name> --region=<your-cluster-region>
-    	gcloud container clusters get-credentials hello-cluster --region=asia-east1
-        ```
-        取得 kubectl 所需的設定，使得你可以藉由 kubectl 來操作你的 cluster
-    1.  ```
-    	kubectl config view
-    	# 他會印出類似如下的 yaml 格式訊息
-    	apiVersion: v1
-		clusters:
-			- cluster:
-				certificate-authority-data: ...
-    			server: ...
-    	contexts:
-			- context:
-    			cluster: ...
-    			user: ...
-  				name: hello-test-cluster
-  		...
-    	```
-    	確認是否上述的操作成功，並且拿到完整的 cluster 名稱，這個指令也能在你後續的歷程裡協助你除錯。這邊你要複製 contexts.[*].name 以便後續使用。
-    1.  ```bash
-    	# kubectl config use-context <your-cluster-name>
-    	kubectl config use-context hello-test-cluster
-    	```
-    	指定你預計要操作的 cluster。
-    1.  ```bash
-        # kubectl apply -f <your-resource-yaml-file-location>
-    	kubectl apply -f ./hello-pod.yaml
-    	```
-    	你可以開始部署 pod, service, etc,. K8s 定義的 resource，這邊要特別注意，每個版本的可能都有點不同，需要特別注意你使用的版本是否有符合你的需求。
+1.  在 terminal 執行這到指另，他會轉跳到瀏覽器，並要求你登入 google 帳號。注意要登對帳號，包含前面你剛才創建的 cluster 即可。
+```
+gcloud auth login
+```
+    
+1.  取得 kubectl 所需的設定，使得你可以藉由 kubectl 來操作你的 cluster
+```
+# gcloud container clusters get-credentials <your-cluster-name> --region=<your-cluster-region>
+gcloud container clusters get-credentials hello-cluster --region=asia-east1
+```
+        
+1.  確認是否上述的操作成功，並且拿到完整的 cluster 名稱，這個指令也能在你後續的歷程裡協助你除錯。這邊你要複製 contexts.name 以便後續使用。
+```
+kubectl config view
+# 他會印出類似如下的 yaml 格式訊息
+apiVersion: v1
+clusters:
+    \- cluster:
+        certificate-authority-data: ...
+        server: ...
+contexts:
+    \- context:
+        cluster: ...
+        user: ...
+        name: hello-test-cluster
+```
+    
+1.  指定你預計要操作的 cluster
+```
+# kubectl config use-context <your-cluster-name>
+kubectl config use-context hello-test-cluster
+```
+    
+1. 你可以開始部署 pod, service, etc,. K8s 定義的 resource，這邊要特別注意，每個版本的可能都有點不同，需要特別注意你使用的版本是否有符合你的需求。
+```
+# kubectl apply -f <your-resource-yaml-file-location>
+kubectl apply -f ./hello-pod.yaml
+```
  
-
 > GCP 會把一群同樣設定的 Nodes 稱作為 `pool`，在 `Node pool details` 底下有個 size 設定，假設你設定 1 他並不會只產生個 Node（一台機器），他會根據你選的 Zonal 跟 Regional 有所影響，而產生 pool 要花費很多時間，所以在這訂這一項的時候，務必小心並多次確認。雖然你仍有辦法無痛替換 pool 但是他仍要花費很多時間去刪除 pool，這段時間你的金錢跟時間就不斷地在燃燒著。
 
 
