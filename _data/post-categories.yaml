@@ -37,3 +37,6 @@ images:
     - title: Git
       src: /assets/img/blog-category-icon/git.png
       url: /blog/others/git
+    - title: More
+      src: /assets/img/blog-category-icon/more.png
+      url: /blog/others/more
