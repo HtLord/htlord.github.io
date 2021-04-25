@@ -1,6 +1,6 @@
 ---
-layout: post
-title: 切換 Python 版本 MacOS with Homebrew
+layout: main-frame
+title: Python 版本切換 MacOS with Homebrew
 tags: python
 published: true
 ---

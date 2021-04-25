@@ -14,13 +14,13 @@ images:
     items:
     - title: Golang
       src: /assets/img/blog-category-icon/golang.png
-      url: /blog/languages/python
+      url: /blog/languages/golang
     - title: JavaScript
       src: /assets/img/blog-category-icon/javascript.png
-      url: /blog/languages/python
+      url: /blog/languages/js
     - title: Java
       src: /assets/img/blog-category-icon/java.png
-      url: /blog/languages/python
+      url: /blog/languages/java
     - title: Python
       src: /assets/img/blog-category-icon/python.png
       url: /blog/languages/python

@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: main-frame
 title: Jekyll 快速上手
 published: true
 ---

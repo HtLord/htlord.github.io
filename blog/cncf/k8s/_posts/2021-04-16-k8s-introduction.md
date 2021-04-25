@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: main-frame
 title: K8s 入門 
 tags: k8s
 published: true

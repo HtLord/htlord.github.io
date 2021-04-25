@@ -7,6 +7,20 @@
     <link ref="stylesheet" href="/assets/css/components.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script>
+        function st() {
+            const scrollElement = window.document.scrollingElement || window.document.body || window.document.documentElement;
+            anime({
+                targets: scrollElement,
+                scrollTop: 0,
+                duration: 500,
+                easing: 'easeInOutQuad'
+            });
+        }
+    </script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -17,7 +31,19 @@
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/blog">分類</a>
+                <div class="dropdown">
+                    <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        文章
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                        {% for imageSet in site.data.post-categories.images %}
+                          <a class="dropdown-item" href="#" disabled>{{ imageSet.category }}</a>
+                          {% for item in imageSet.items%}
+                            <a class="dropdown-item" style="font-size: 12px;" href="{{ item.url }}">{{ item.title }}</a>
+                          {% endfor %}
+                        {% endfor %}
+                    </div>
+                </div>
             </li>
         </ul>
     </div>
@@ -25,8 +51,13 @@
 <main class="page-content">
     {{ content }}
 </main>
-<footer class="wrapper">
-    <p>{{ site.description }}</p>
+<button type="button" class="rounded-circle rounded-sm btn btn-light" onclick="st()">^</button>
+<footer class="navbar-expand-lg bg-light">
+    <div class="container">
+       <div class="row align-items-center justify-content-center">
+           <p>{{ site.description }}</p>
+       </div>
+    </div>
 </footer>
 </body>
 </html>
