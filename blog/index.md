@@ -6,11 +6,11 @@ layout: main-frame
     {% for categorySet in site.data.post-categories.images %}    
     <div class="container" style="margin-bottom: 16px;">
         <div class="row align-items-end">
-            <h3 class="breadcrumb-item active" aria-current="page">{{ categorySet.category }}</h3>
+            <h3 aria-current="page">{{ categorySet.category }}</h3>
         </div>
         <div class="row">
         {% for item in categorySet.items %}
-        <div class="card text-center col-2 justify-content-between" style="margin: 4px">
+        <div class="card text-center col-2 justify-content-between" style="margin-right: 8px">
             <a href="{{ item.url }}" style="padding: 16px;">
             <img class="card-img-top" src="{{ item.src }}"/>
             </a>
