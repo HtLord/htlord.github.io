@@ -10,7 +10,7 @@ layout: main-frame
         </div>
         <div class="row">
             {% for item in categorySet.items %}
-            <div id="{{ item.title }}" class="shadow-sm card text-center col-2 justify-content-between" style="margin-right: 8px">
+            <div id="{{ item.title }}" class="shadow-sm card text-center col-12 col-md-3 col-lg-3 justify-content-between" style="margin-right: 8px; margin-bottom: 8px;">
                 <a href="{{ item.url }}" style="padding: 16px;">
                     <img class="card-img-top" src="{{ item.src }}"/>
                 </a>

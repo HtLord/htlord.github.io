@@ -63,7 +63,7 @@
             {% assign targetPosts = site.posts | where: "tags", page.targetTag %}
             <div class="row">
                 {% for post in targetPosts %}
-                <div class="col-3">
+                <div class="col-12 col-md-4 col-lg-3">
                     <div class="card" >
                         <div class="card-img-top" style='background-image: url({{ "https://picsum.photos/seed/" | append: post.title | append: "/300/180" | replace: " ", "" }}); height: 180px;'>
                             <img />
