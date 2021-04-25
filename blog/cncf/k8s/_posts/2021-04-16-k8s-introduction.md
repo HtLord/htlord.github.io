@@ -1,7 +1,7 @@
 ---
 layout: main-frame
 title: K8s 入門 
-tags: k8s
+tags: k8s introduction
 abstract: 快速了解 Node, Pod, Service, Ingress 開啟使用，K8s 的世界。asdfasdfasld;fkja;sldkjfl;aksjdf;lkajsdf;lkjas;ldkfja;lksdjf;akljsdf 
 ---
 

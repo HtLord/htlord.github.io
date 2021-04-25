@@ -1,7 +1,7 @@
 ---
 layout: main-frame
 title: Python 版本切換 MacOS with Homebrew
-tags: python
+tags: python trouble-shooting
 published: true
 ---
 
