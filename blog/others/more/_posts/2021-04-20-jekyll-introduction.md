@@ -1,5 +1,5 @@
 ---
-layout: main-frame
+layout: post-frame
 title: Jekyll 快速上手
 tags: more jekyll introduction
 ---

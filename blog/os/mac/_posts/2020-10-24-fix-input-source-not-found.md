@@ -1,5 +1,6 @@
 ---
-layout: main-frame
+layout: post-frame
+title: Mac 疑難雜症
 tags: mac trouble-shooting
 ---
 

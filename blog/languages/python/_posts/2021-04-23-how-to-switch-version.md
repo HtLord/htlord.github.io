@@ -1,8 +1,7 @@
 ---
-layout: main-frame
+layout: post-frame
 title: Python 版本切換 MacOS with Homebrew
 tags: python trouble-shooting
-published: true
 ---
 
 ### 小劇場
