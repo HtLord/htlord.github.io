@@ -51,7 +51,7 @@ layout: main-frame
                     <li>Golang Icon made by <a href="https://www.google.com/">Google</a></li>
                     <li>Docker Icon made by <a href="https://www.docker.com/">Docker</a></li>
                     <li>Kubernetes Icon made by <a href="https://https://kubernetes.io/">Kubernetes</a></li>
-                    <li>Window Icon made by <a href="https://www.google.com/">Google</a></li>
+                    <li>Windows Icon made by <a href="https://www.microsoft.com/">Microsoft</a></li>
                 </ul>
             </div>
         </div>
