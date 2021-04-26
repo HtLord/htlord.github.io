@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ page.title }}</title>
     <link rel="stylesheet" href="/assets/css/main.css">
     <link ref="stylesheet" href="/assets/css/components.css"/>
@@ -62,10 +63,10 @@
     <main class="page-content" style="padding: 16px;">
         <div class="container-fluid">
             {% assign targetPosts = site.posts | where: "tags", page.targetTag %}
-            <div class="row">
+            <div class="row justify-content-even">
                 {% for post in targetPosts %}
                 <div class="col-12 col-md-4 col-lg-3">
-                    <div class="card" >
+                    <div class="card">
                         <div class="card-img-top" style='background-image: url({{ "https://picsum.photos/seed/" | append: post.title | append: "/300/180" | replace: " ", "" }}); height: 180px;'>
                             <img />
                         </div>
@@ -100,6 +101,7 @@
     <div class="container">
        <div class="row align-items-center justify-content-center">
            <p>{{ site.description }}</p>
+           <p>All rights reserved</p>
        </div>
     </div>
 </footer>
