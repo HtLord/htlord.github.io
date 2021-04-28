@@ -1,0 +1,106 @@
+---
+layout: main-frame
+---
+<head>
+    <title>HtLord Blog Article Editor</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        .ace_editor {
+            border: 1px solid lightgray;
+            margin: auto;
+            height: 60vh;
+            width: 80%;
+        }
+
+        .scrollmargin {
+            height: 70vh;
+            text-align: start;
+        }
+    </style>
+</head>
+<div style="display: flex; flex-direction: column;">
+    <main>
+        <div id="editor" style="height: 70vh;"></div>
+        <script src="/assets/js/ace-editor/src-mini/ace.js" type="text/javascript" charset="utf-8"></script>
+        <script>
+            let editor = ace.edit("editor");
+            let EditSession = require("ace/edit_session").EditSession;
+            let editorContentSession  = new EditSession("---\nlayout: main-frame\n---");
+            let editorElement = document.getElementById('editor');
+            let navbarElement = document.querySelector(".navbar");
+            editorElement.style.fontSize='16px';
+            editorElement.style.marginTop = navbarElement.style.height;
+            editor.setTheme("ace/theme/twilight");
+            editor.setSession(editorContentSession);
+            editor.getSession().setUseWrapMode(true);
+            editor.getSession().setTabSize(2);
+            editor.setWrapBehavioursEnabled(true);
+        </script>
+        <div class="scrollmargin"></div>
+    </main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="form-group col-12 col-m-3 col-lg-3">
+                <select id="categorySelector" class="form-control">
+                    {% for imageSet in site.data.post-categories.images %}
+                    <optgroup label="{{ imageSet.category }}">
+                        {% for item in imageSet.items %}
+                        <option value="{{ item.title | downcase }}">{{ item.title }}</option>
+                        {% endfor %}
+                    </optgroup>
+                    {% endfor %}
+                </select>
+            </div>
+            <div id="articleSelectorPlaceholder" class="form-group col-12 col-m-6 col-lg-6">
+                <select id="articleSelector" class="form-control">
+                </select>
+            </div>
+            <button class="col-12 col-m-3 col-lg-3" class="btn">b</button>
+        </div>
+        <div class="row">
+            <p>
+                Thanks <span><a href="https://ace.c9.io/">Ace</a></span> save my days
+            </p>
+        </div>
+    </div>
+    <script>
+        let posts = [
+            {% for post in site.posts %}
+                {"category": "{{ post.categories[2] }}", "title": "{{ post.title }}", "filePath": "{{ post.url | replace: "html", "md" }}"} ,
+            {% endfor %}
+        ];
+
+        let categorySelector = document.getElementById('categorySelector');
+        categorySelector.onchange = categorySelectorOnChangeHandler;
+
+        function categorySelectorOnChangeHandler(e) {
+            swapArticleSelectorOptions(e.target.value);
+        }
+
+        function swapArticleSelectorOptions(selectedCategory) {
+            let articleSelector = document.getElementById('articleSelector');
+
+            articleSelector.remove();
+            articleSelector = document.createElement("articleSelector");
+            posts.filter(e => e.category === selectedCategory)
+                .forEach(e => {
+                    let opt = document.createElement("option");
+                    opt.value = e.url;
+                    opt.text = e.title;
+                    articleSelector.add(opt, null);
+                });
+
+            let articleSelectorPlaceholder = document.getElementById('articleSelectorPlaceholder');
+            articleSelectorPlaceholder.children.add(articleSelector);
+        }
+
+        swapArticleSelectorOptions();
+    </script>
+</div>
