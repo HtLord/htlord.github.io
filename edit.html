@@ -32,16 +32,20 @@ layout: main-frame
         <script>
             let editor = ace.edit("editor");
             let EditSession = require("ace/edit_session").EditSession;
-            let editorContentSession  = new EditSession("---\nlayout: main-frame\n---");
+            let editorContentSession  = new EditSession("");
+            editorContentSession.setMode('ace/mode/markdown');
+            editorContentSession.setUseWrapMode(true);
+            editorContentSession.setTabSize(2);
+
             let editorElement = document.getElementById('editor');
             let navbarElement = document.querySelector(".navbar");
-            editorElement.style.fontSize='16px';
+            editorElement.style.fontSize = '16px';
             editorElement.style.marginTop = navbarElement.style.height;
             editor.setTheme("ace/theme/twilight");
-            editor.setSession(editorContentSession);
-            editor.getSession().setUseWrapMode(true);
-            editor.getSession().setTabSize(2);
             editor.setWrapBehavioursEnabled(true);
+            editor.setSession(editorContentSession);
+            editor.setKeyboardHandler("ace/keyboard/vim");
+
         </script>
         <div class="scrollmargin"></div>
     </main>
