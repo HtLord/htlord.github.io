@@ -26,7 +26,12 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  HtLord
 
+sass:
+  sass_dir: assets
+  style: compressed
+
 # Build settings
+remote_theme: sproogen/resume-theme
 theme: minima
 plugins:
   - jekyll-feed

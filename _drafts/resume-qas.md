@@ -1,0 +1,6 @@
+- Why you think you are a good communicator?
+    - Tell them about FE/BE conflict with Susi
+    - when FE/BE/Design has different point of view of product
+- Why you think you are creative, vision having, and DIY guy?
+    -  
+- We are going to provide user to upload files to our service and designer decide to having unlimited size.
