@@ -1,0 +1,18 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Navigation.astro';
+import { SITE } from '@consts';
+import Footer from "../components/Footer.astro";
+---
+<html lang={SITE.lang}>
+    <head>
+        <BaseHead title={SITE.title} description={SITE.description} />
+    </head>
+    <body>
+        <Header title={SITE.title} />
+        <main>
+            <slot />
+        </main>
+    </body>
+    <Footer />
+</html>
