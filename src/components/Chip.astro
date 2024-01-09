@@ -1,0 +1,12 @@
+---
+const { tag } = Astro.props
+---
+<div class="
+     flex items-center
+     h-8 mr-4 px-4 py-0
+     bg-gradient-to-r from-blue from-10% via-purple via-40%  to-pink to-99%
+     rounded-2xl
+     cursor-pointer"
+>
+    <a class="text-white hover:text-black" href={`/tags/${tag}/1`}>{tag}</a>
+</div>

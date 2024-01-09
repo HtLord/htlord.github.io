@@ -32,7 +32,7 @@ const { tag }= Astro.params;
 const { page } = Astro.props;
 ---
 <BaseLayout>
-    <h1>{tag} at {page.currentPage}</h1>
+    <h1>Go to... {tag} at {page.currentPage}</h1>
     <ul>
         {page.data.map(post =>
                 <li>

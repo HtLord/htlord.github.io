@@ -2,22 +2,23 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import getTagByCollection from "../../libs/astro/getTagByCollection";
 import getPosts from "../../libs/astro/getPosts";
+import Clip from "../../components/Chip.astro";
 
 const posts = await getPosts('blog');
 const tags = [...getTagByCollection(posts)];
 ---
 <BaseLayout>
+    <h1>Go to...</h1>
     <div class="tags">
         {tags.map((tag) => (
-                <p class="tag"><a href={`/tags/${tag}/1`}>{tag}</a></p>
+            <Clip class="tag" tag={tag}/>
+                <!--<p class="tag">-->
+                <!--    <a href={`/tags/${tag}/1`}>{tag}</a>-->
+                <!--</p>-->
         ))}
     </div>
 </BaseLayout>
 <style>
-    a {
-        color: #00539F;
-    }
-
     .tags {
         display: flex;
         flex-wrap: wrap;
