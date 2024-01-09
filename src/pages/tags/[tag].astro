@@ -10,19 +10,18 @@ export async function getStaticPaths() {
             });
     const tags =
         astroUtil.getTagByCollection(posts);
-    const result = [];
-    for (const tag of tags) {
-        result.push({
-            params: {
-                tag: tag
-            },
-            props: {
-                posts: [...astroUtil.getPostInfoBy(posts, tag)],
-            }
-        });
-    }
 
-    return result;
+    return [...tags]
+        .map(tag => {
+            return {
+                params: {
+                    tag: tag
+                },
+                props: {
+                    posts: [...astroUtil.getPostInfoBy(posts, tag)],
+                }
+            }
+        })
 }
 
 const {tag} = Astro.params;
