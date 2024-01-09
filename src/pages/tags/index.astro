@@ -1,13 +1,15 @@
 ---
-import { getBlogCollectionTags } from "@libs/astro/getTags.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import getTagByCollection from "../../libs/astro/getTagByCollection";
+import getPosts from "../../libs/astro/getPosts";
 
-const tags = await getBlogCollectionTags();
+const posts = await getPosts('blog');
+const tags = [...getTagByCollection(posts)];
 ---
 <BaseLayout>
     <div class="tags">
         {tags.map((tag) => (
-                <p class="tag"><a href={`/tags/${tag}`}>{tag}</a></p>
+                <p class="tag"><a href={`/tags/${tag}/1`}>{tag}</a></p>
         ))}
     </div>
 </BaseLayout>

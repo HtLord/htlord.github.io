@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import astroUtil from '../../../libs/astro';
+import {SITE_PAGES} from "../../../consts";
+
+export async function getStaticPaths({paginate}) {
+    const posts =
+        (await astroUtil.getPosts('blog'))
+            .sort((a, b) => {
+                return a.data.pubDate.getMilliseconds() - b.data.pubDate.getMilliseconds();
+            });
+    const tags =
+        astroUtil.getTagByCollection(posts);
+
+    return [...tags]
+        .flatMap((tag) => {
+            const filteredPosts =
+                astroUtil.getPostInfoBy(posts, tag);
+            console.log(filteredPosts);
+            return paginate(
+                filteredPosts,
+                {
+                    params: {
+                        tag,
+                    },
+                    pageSize: SITE_PAGES
+                });
+        });
+}
+
+const { tag }= Astro.params;
+const { page } = Astro.props;
+---
+<BaseLayout>
+    <h1>{tag} at {page.currentPage}</h1>
+    <ul>
+        {page.data.map(post =>
+                <li>
+                    <a href=`/blog/${post.slug}`>{post.title}</a>
+                </li>
+        )}
+    </ul>
+    {page.url.prev ? <a href={page.url.prev}>Previous</a> : null}
+    {page.url.next ? <a href={page.url.next}>Next</a> : null}
+
+</BaseLayout>
