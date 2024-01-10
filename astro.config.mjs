@@ -7,10 +7,10 @@ import tailwind from "@astrojs/tailwind";
 export default defineConfig({
   site: 'https://htlord.github.io',
   integrations: [
+    mdx(),
     tailwind({
       applyBaseStyles: false,
     }),
-    mdx(),
-    sitemap()
+    sitemap(),
   ],
 });

@@ -12,9 +12,6 @@ const tags = [...getTagByCollection(posts)];
     <div class="tags">
         {tags.map((tag) => (
             <Clip class="tag" tag={tag}/>
-                <!--<p class="tag">-->
-                <!--    <a href={`/tags/${tag}/1`}>{tag}</a>-->
-                <!--</p>-->
         ))}
     </div>
 </BaseLayout>
