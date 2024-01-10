@@ -1,9 +1,8 @@
 ---
-title: K8s 入門 
+title: K8s 入門
+pubDate: '2021-09-23'
 tags: 
   - k8s
-pubDate:
-description: 快速了解 Node, Pod, Service, Ingress 開啟使用，K8s 的世界。 
 ---
 
 ### 概念
