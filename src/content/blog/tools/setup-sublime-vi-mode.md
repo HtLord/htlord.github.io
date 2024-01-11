@@ -1,6 +1,6 @@
 ---
 title: Set Sublime into Vi mode
-pubDate: '2021-09-17-'
+pubDate: '2021-09-17'
 tags:
   - sublime
   - vim
