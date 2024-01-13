@@ -1,0 +1,37 @@
+brief: |
+  Hello I'm Wei-Chen.
+skills:
+  - java
+  - k8s
+  - gcp
+  - python
+  - javascript
+  - nodeJs
+career:
+  - company: Dentall
+    period: 2019/06 ~ current
+    title: Sr. Backend Engineer
+    achievement:
+      - a
+      - b
+      - c
+  - company: HiTrust
+    period: 2019/06 ~ current
+    title: Backend Engineer
+    achievement:
+      - a
+      - b
+      - c
+  - company: Synnex Group
+    period: 2019/06 ~ current
+    title: Sr. Backend Engineer
+    achievement:
+      - a
+      - b
+      - c
+education:
+  - university: FCU
+    degree: Bachelor
+    brief: |
+      abc
+
