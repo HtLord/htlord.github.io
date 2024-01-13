@@ -1,4 +1,5 @@
 export const SITE = {
+    favicon: '/favicon-32x32.png',
     title: 'HtLord 學習日誌',
     author: 'htlord',
     lang: 'en',
