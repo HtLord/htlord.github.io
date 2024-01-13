@@ -14,4 +14,11 @@ const blog = defineCollection({
 	}),
 });
 
-export const collections = { blog };
+const resume = defineCollection({
+	type: 'data'
+})
+
+export const collections = {
+	blog,
+	resume,
+};

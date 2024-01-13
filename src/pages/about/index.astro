@@ -1,12 +1,13 @@
 ---
 import Layout from '../../layouts/BlogPost.astro';
+import {SITE} from "../../consts";
 ---
 
 <Layout
 	title="About Me"
 	description="Lorem ipsum dolor sit amet"
 	pubDate={new Date('2024-01-11')}
-	heroImage="/blog-placeholder-about.jpg"
+	heroImage={SITE.aboutMeHeroImage}
 >
 	<p>
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut

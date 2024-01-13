@@ -1,18 +1,24 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import '@styles/tailwind.css';
+import {SITE} from "../consts";
 ---
 
 <BaseLayout>
-    <h1>⚜️Welcome,I'm HtLord⚜️</h1>
-    <p>
-        This site is my personal page for recording my learning path, technical example,
-         projects, career, and story.
-    </p>
-    <p>
-        Help me showing...
-    </p>
-    <p>
-        How far I already got. How many effort I pay off. What path I work through. Most
-        important is pushing me to further place.
-    </p>
+    <div class="flex flex-col items-center gap-4">
+        <h1>Welcome!</h1>
+        <img class="w-72 h-72 rounded-full" src={SITE.avatar} alt="">
+        <h1>I'm HtLord</h1>
+        <p>
+            This site is my personal page for recording my learning path, technical example,
+             projects, career, and story.
+        </p>
+        <p>
+            Help me showing...
+        </p>
+        <p>
+            How far I already got. How many effort I pay off. What path I work through. Most
+            important is pushing me to further place.
+        </p>
+    </div>
 </BaseLayout>
