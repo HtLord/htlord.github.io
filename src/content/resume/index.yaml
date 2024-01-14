@@ -1,4 +1,8 @@
-brief: |
+profile:
+  name: Wei-Chen Huang
+  #  avatar:
+  #  contacts:
+summary: |
   Hello I'm Wei-Chen.
 skills:
   - java
@@ -7,17 +11,29 @@ skills:
   - python
   - javascript
   - nodeJs
-career:
-  - company: Dentall
+experiences:
+  - name: Dentall
     period: 2019/06 ~ current
     title: Sr. Backend Engineer
+    stack:
+      - java/spring
+      - js/nodeJs/reactJs
+      - python/django
+      - postgres/firestore
+      - k8s/prometheus/grafana/gcp
     achievement:
-      - a
-      - b
-      - c
+      - description: Get certification iso-27001, iso-27701 from BSI
+        references:
+          - 'https://htlord.github.io'
+      - description: Making team co-op to each other smoothly and high quality code base by introducing BDD and TDD
+      - description: Develop cloud architecture
+      - description: Designing
   - company: HiTrust
     period: 2019/06 ~ current
     title: Backend Engineer
+    stack:
+      - java/spring
+      - spring
     achievement:
       - a
       - b
@@ -25,6 +41,12 @@ career:
   - company: Synnex Group
     period: 2019/06 ~ current
     title: Sr. Backend Engineer
+    stack:
+      - java
+      - spring
+      - jsp
+      - JavaScript
+      - JQuery
     achievement:
       - a
       - b
@@ -32,6 +54,4 @@ career:
 education:
   - university: FCU
     degree: Bachelor
-    brief: |
-      abc
 

@@ -1,0 +1,14 @@
+---
+import '@styles/tailwind.css';
+import Section from "./Section.astro";
+
+const { name, title, period, brief } = Astro.props
+---
+<Section title="Education">
+    <p>{ name }</p>
+    <p>{ title }</p>
+    <p>{ period }</p>
+    <pre>
+        { brief }
+    </pre>
+</Section>

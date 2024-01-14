@@ -2,12 +2,13 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import '@styles/tailwind.css';
 import {SITE} from "../consts";
+import MyAvatar from "../components/MyAvatar.astro";
 ---
 
 <BaseLayout>
     <div class="flex flex-col items-center gap-4">
         <h1>Welcome!</h1>
-        <img class="w-72 h-72 rounded-full" src={SITE.avatar} alt="">
+        <MyAvatar />
         <h1>I'm HtLord</h1>
         <p>
             This site is my personal page for recording my learning path, technical example,
