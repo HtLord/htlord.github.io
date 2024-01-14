@@ -1,6 +1,22 @@
 {
   "github": {
-    "alt": "github repository link",
-    "url": "https://github.com/HtLord"
+    "icon": "/resume/github-icon",
+    "alt": "github icon",
+    "value": "https://github.com/HtLord"
+  },
+  "phone": {
+    "icon": "/resume/phone-icon",
+    "alt": "phone icon",
+    "value": "09**-***-***"
+  },
+  "email": {
+    "icon": "/resume/email-icon",
+    "alt": "email icon",
+    "value": "s75757775@hotmail.com"
+  },
+  "website": {
+    "icon": "/resume/website-icon",
+    "alt": "website icon",
+    "value": "https://htlord.github.io"
   }
 }
