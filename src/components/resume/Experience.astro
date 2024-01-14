@@ -1,19 +1,41 @@
 ---
 import '@styles/tailwind.css';
 import resumeData from '@content/resume/index.yaml';
-import Section from "./Section.astro";
 
 const data = resumeData;
 ---
 <div>
-  {
-      data.experiences.map((exp) => {
-        return (
-            <Section title={exp.name}>
-              <div>{ exp.title }</div>
-              <div>{ exp.period }</div>
-            </Section>
-        )
-      })
-  }
+    {
+        data.experiences.map((exp) => {
+            return (
+                <div class="mb-8">
+                  <div class="
+                    mb-2
+                    grid grid-cols-12
+                    border-b-2 border-black border-dotted
+                  ">
+                    <h3 class="col-span-9">
+                        {exp.title}
+                    </h3>
+                    <div class="col-span-3 grid grid-rows-2">
+                      <div>{exp.name}</div>
+                      <div>{exp.period}</div>
+                    </div>
+                  </div>
+                  <div id="achievement">
+                    <ul class="list-disc pl-8 mb-2">
+                        {
+                            exp.achievement.map((arch) => {
+                                return (
+                                    <li>{arch.description}</li>
+                                )
+                            })
+                        }
+                    </ul>
+                  </div>
+                  <div>techs:</div>
+                </div>
+            )
+        })
+    }
 </div>

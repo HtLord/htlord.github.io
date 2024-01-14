@@ -26,7 +26,7 @@ experiences:
       - description: Making team co-op to each other smoothly and high quality code base by introducing BDD and TDD
       - description: Develop cloud architecture
       - description: Designing
-  - name: HiTrust
+  - name: HiTRUST
     period: 2019/06 ~ current
     title: Backend Engineer
     stack:
@@ -38,7 +38,7 @@ experiences:
       - c
   - name: Synnex Group
     period: 2019/06 ~ current
-    title: Sr. Backend Engineer
+    title: Full Stack Engineer
     stack:
       - java
       - spring
