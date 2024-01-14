@@ -1,11 +1,11 @@
 ---
 import '@styles/tailwind.css';
+import resumeData from '@content/resume/index.yaml';
+
+const data = resumeData;
 ---
 <div>
-    <div>
-        Name
-    </div>
-    <div>
-        Contact
-    </div>
+  <h1>{ data.name }</h1>
+  <h1>{ data.title }</h1>
+  <pre>{ data.summary }</pre>
 </div>

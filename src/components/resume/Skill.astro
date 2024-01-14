@@ -1,12 +1,19 @@
 ---
 import '@styles/tailwind.css';
 import Section from "./Section.astro";
+import resumeData from '@content/resume/index.yaml';
+import SkillChip from "./SkillChip.astro";
+
+const data = resumeData;
 ---
 <Section title="Skill">
-    <ul>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-    </ul>
+    <div class="flex flex-wrap m-4">
+    {
+        data.skills.map((skill) => {
+            return (
+                <SkillChip value={skill} />
+            )
+        })
+    }
+    </div>
 </Section>

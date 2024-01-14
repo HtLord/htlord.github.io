@@ -11,7 +11,7 @@ const tags = [...getTagByCollection(posts)];
     <h1>Go to...</h1>
     <div class="tags">
         {tags.map((tag) => (
-            <Clip class="tag" tag={tag}/>
+            <Clip class="tag" value={tag}/>
         ))}
     </div>
 </BaseLayout>

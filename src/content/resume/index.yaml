@@ -1,7 +1,5 @@
-profile:
-  name: Wei-Chen Huang
-  #  avatar:
-  #  contacts:
+name: Wei-Chen Huang
+title: Sr. Backend Software Engineer | SRE
 summary: |
   Hello I'm Wei-Chen.
 skills:
@@ -28,7 +26,7 @@ experiences:
       - description: Making team co-op to each other smoothly and high quality code base by introducing BDD and TDD
       - description: Develop cloud architecture
       - description: Designing
-  - company: HiTrust
+  - name: HiTrust
     period: 2019/06 ~ current
     title: Backend Engineer
     stack:
@@ -38,7 +36,7 @@ experiences:
       - a
       - b
       - c
-  - company: Synnex Group
+  - name: Synnex Group
     period: 2019/06 ~ current
     title: Sr. Backend Engineer
     stack:

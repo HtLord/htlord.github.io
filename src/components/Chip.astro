@@ -1,7 +1,7 @@
 ---
 import '@styles/tailwind.css';
 
-const { tag } = Astro.props
+const { value } = Astro.props
 ---
 <div class="
      flex items-center
@@ -10,5 +10,5 @@ const { tag } = Astro.props
      rounded-2xl
      cursor-pointer"
 >
-    <a class="text-white hover:text-black" href={`/tags/${tag}/1`}>{tag}</a>
+    <a class="text-white hover:text-black" href={`/tags/${value}/1`}>{value}</a>
 </div>

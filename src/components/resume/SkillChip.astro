@@ -1,0 +1,12 @@
+---
+import '@styles/tailwind.css';
+
+const { value } = Astro.props
+---
+<div class="
+     flex items-center
+     h-8 m-2
+     cursor-pointer"
+>
+    <a class="border-b-2 border-dashed text-black hover:text-white" href={`/tags/${value}/1`}>{value}</a>
+</div>

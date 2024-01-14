@@ -1,14 +1,24 @@
 ---
 import '@styles/tailwind.css';
 import Profile from "../components/resume/Profile.astro";
+import Title from "../components/resume/Title.astro";
+import Experience from "../components/resume/Experience.astro";
 ---
 <html lang="en">
+<head>
+</head>
 <body>
 <div class=`fixed w-full min-h-full grid grid-cols-12`>
-    <div class='bg-yellow min-h-full col-span-8'>02</div>
-    <div class='bg-blue min-h-full col-span-4'>
-        <Profile/>
-    </div>
+  <div class='
+    flex flex-col min-h-full col-span-8
+    pt-16 pl-16 pr-4 pb-16
+  '>
+    <Title/>
+    <Experience />
+  </div>
+  <div class='min-h-full col-span-4 bg-gray-light p-4'>
+    <Profile/>
+  </div>
 </div>
 </body>
 </html>

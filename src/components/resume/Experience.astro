@@ -1,0 +1,19 @@
+---
+import '@styles/tailwind.css';
+import resumeData from '@content/resume/index.yaml';
+import Section from "./Section.astro";
+
+const data = resumeData;
+---
+<div>
+  {
+      data.experiences.map((exp) => {
+        return (
+            <Section title={exp.name}>
+              <div>{ exp.title }</div>
+              <div>{ exp.period }</div>
+            </Section>
+        )
+      })
+  }
+</div>
