@@ -7,7 +7,7 @@ const blog = defineCollection({
         title: z.string(),
         // Transform string to Date object
         pubDate: z.coerce.date(),
-        tags: z.array(z.string()).default(["others"]),
+        tags: z.array(z.string()).default(["others"]).optional(),
         updatedDate: z.coerce.date().optional(),
         heroImage: z.string().default('/blog-placeholder-4.jpg'),
         description: z.string().optional(),
@@ -21,11 +21,7 @@ const resume = defineCollection({
         title: z.string(),
         summary: z.string(),
         skills: z.array(z.string()).optional(),
-        education: z.object({
-            university: z.string(),
-            degree: z.string(),
-        }),
-        experiences: z.object({
+        experiences: z.array(z.object({
            name: z.string(),
            period: z.string(),
             title: z.string(),
@@ -34,7 +30,11 @@ const resume = defineCollection({
                 description: z.string(),
                 references: z.array(z.string()).optional(),
             })).optional(),
-        })
+        })).optional(),
+        educations: z.array(z.object({
+            university: z.string(),
+            degree: z.string(),
+        })).optional(),
     })
 })
 
