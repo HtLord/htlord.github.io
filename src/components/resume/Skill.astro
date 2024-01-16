@@ -1,15 +1,16 @@
 ---
 import '@styles/tailwind.css';
 import Section from "./Section.astro";
-import resumeData from '@content/resume/index.yaml';
 import SkillChip from "./SkillChip.astro";
+import { getEntry } from "astro:content";
 
-const data = resumeData;
+const resumeData =  await getEntry('resume', 'index');
+const skills = resumeData.data.skills;
 ---
 <Section title="Skill">
     <div class="flex flex-wrap m-4">
     {
-        data.skills.map((skill) => {
+        skills?.map((skill) => {
             return (
                 <SkillChip value={skill} />
             )

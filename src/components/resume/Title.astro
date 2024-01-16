@@ -1,11 +1,11 @@
 ---
 import '@styles/tailwind.css';
-import resumeData from '@content/resume/index.yaml';
+import { getEntry } from "astro:content";
 
-const data = resumeData;
+const resumeData =  await getEntry('resume', 'index');
 ---
 <div>
-  <h1>{ data.name }</h1>
-  <h1>{ data.title }</h1>
-  <pre>{ data.summary }</pre>
+  <h1>{ resumeData.data.name }</h1>
+  <h1>{ resumeData.data.title }</h1>
+  <pre>{ resumeData.data.summary }</pre>
 </div>

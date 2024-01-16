@@ -1,12 +1,13 @@
 ---
 import '@styles/tailwind.css';
-import resumeData from '@content/resume/index.yaml';
+import { getEntry } from "astro:content";
 
-const data = resumeData;
+const resumeData =  await getEntry('resume', 'index');
+const experiences = resumeData.data.experiences;
 ---
 <div>
     {
-        data.experiences.map((exp) => {
+        experiences?.map((exp: any) => {
             return (
                 <div class="mb-8">
                   <div class="
@@ -25,7 +26,7 @@ const data = resumeData;
                   <div id="achievement">
                     <ul class="list-disc pl-8 mb-2">
                         {
-                            exp.achievement.map((arch) => {
+                            exp.achievements?.map((arch: any) => {
                                 return (
                                     <li>{arch.description}</li>
                                 )
