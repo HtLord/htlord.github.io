@@ -3,45 +3,50 @@ title: Sr. Backend Software Engineer | SRE
 summary: |
   Hello I'm Wei-Chen.
 skills:
-  - java
-  - k8s
-  - gcp
-  - python
-  - javascript
-  - nodeJs
+  - Java
+  - K8s
+  - GCP
+  - Python
+  - JavaScript
+  - NodeJs
 experiences:
-  - name: Dentall
-    period: 2019/06 ~ current
-    title: Sr. Backend Engineer
+  - name: "Dentall"
+    period: "2019/06 ~ current"
+    title: "Sr. Backend Engineer | SRE"
     stack:
-      - java/spring
-      - js/nodeJs/reactJs
-      - python/django
-      - postgres/firestore
-      - k8s/prometheus/grafana/gcp
+      - Java/Spring
+      - JavaScript/NodeJs/ReactJs
+      - Python/Django
+      - Postgres/Firestore
+      - K8s/Prometheus/Grafana/GCP
     achievements:
-      - description: Get certification iso-27001, iso-27701 from BSI
-        references:
-          - 'https://htlord.github.io'
-      - description: Making team co-op to each other smoothly and high quality code base by introducing BDD and TDD
-      - description: Develop cloud architecture
-      - description: Designing
-  - name: HiTRUST
-    period: 2019/06 ~ current
-    title: Backend Engineer
+      - description: Earning iso-27001, iso-27701 certification by providing documentations and technical support
+      - description: Making team communication influentially and increasing production quality by introducing and fusing BDD into daily work
+      - description: Increasing revenues and performance by optimizing usage of cloud resource and implementing several ways to monitoring resources
+      - description: Increasing scalability and flexibility by refactoring architectures like migrate to multi-tenant and micro-service
+      - description: Attracting users to use and migrate to our system by building awesome features to solve clinics' complex jobs and problems
+  - name: "HiTRUST"
+    period: "2018/01 ~ 2018/12"
+    title: "Backend Engineer"
     stack:
-      - java/spring
-      - spring
-  - name: Synnex Group
-    period: 2019/06 ~ current
-    title: Full Stack Engineer
-    stack:
-      - java
-      - spring
-      - jsp
+      - Java/Apache Camel/Spring
       - JavaScript
-      - JQuery
+      - DB2
+    achievements:
+      - description: Implementing new features and web-app for system of future transfer and loaning system
+      - description: Increasing flexibility by implementing multiple protocols in notification system with Apache Camel
+      - description: Providing technical support like documents, monitoring, deployment for clinics of the bank
+  - name: "Synnex Group"
+    period: "2014/11 ~ 2017/02"
+    title: "Full Stack Engineer"
+    stack:
+      - Java/Jsp/Spring
+      - JavaScript/JQuery/Ajax
+    achievements:
+      - description: Maintaining and developing websites and APIs for inventory management system and sale system
+      - description: Guiding new collages as mentor
 educations:
-  - university: FCU
-    degree: Bachelor
+  - university: "Feng Chia Univerity, Taichung, Taiwan"
+    degree: "BSc Computer Science"
+    period: "2009/9 ~ 2013/6"
 
