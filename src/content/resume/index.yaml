@@ -19,7 +19,7 @@ experiences:
       - python/django
       - postgres/firestore
       - k8s/prometheus/grafana/gcp
-    achievement:
+    achievements:
       - description: Get certification iso-27001, iso-27701 from BSI
         references:
           - 'https://htlord.github.io'
@@ -32,10 +32,6 @@ experiences:
     stack:
       - java/spring
       - spring
-    achievement:
-      - a
-      - b
-      - c
   - name: Synnex Group
     period: 2019/06 ~ current
     title: Full Stack Engineer
@@ -45,10 +41,6 @@ experiences:
       - jsp
       - JavaScript
       - JQuery
-    achievement:
-      - a
-      - b
-      - c
 education:
   - university: FCU
     degree: Bachelor
