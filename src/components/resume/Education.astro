@@ -1,14 +1,21 @@
 ---
 import '@styles/tailwind.css';
 import Section from "./Section.astro";
+import {getEntry} from "astro:content";
 
-const { name, title, period, brief } = Astro.props
+const resumeData =  await getEntry('resume', 'index');
+const educations = resumeData.data.educations;
 ---
 <Section title="Education">
-    <p>{ name }</p>
-    <p>{ title }</p>
-    <p>{ period }</p>
-    <pre>
-        { brief }
-    </pre>
+    {
+        educations.map(edu => {
+            return (
+                <div>
+                  <p>{ edu.degree }</p>
+                  <p>{ edu.university}</p>
+                  <p>{ edu.period }</p>
+                </div>
+            )
+        })
+    }
 </Section>
