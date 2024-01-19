@@ -76,7 +76,7 @@ Example
     state: ACTIVE
     ```
 
-    Get copy of outputs of name (a.k.a <full-wi-provider-name> ) for Github Action later usage.
+    Get copy of name of output (a.k.a <full-wi-provider-name> ) for Github Action later usage.
 
 1. Create an example yaml
 
