@@ -14,11 +14,19 @@ experiences:
     period: "2019/06 ~ current"
     title: "Sr. Backend Engineer | SRE"
     stack:
-      - Java/Spring
-      - JavaScript/NodeJs/ReactJs
-      - Python/Django
-      - Postgres/Firestore
-      - K8s/Prometheus/Grafana/GCP
+      - Java
+      - JavaScript
+      - Python
+      - Spring
+      - NodeJs
+      - ReactJs
+      - Django
+      - Postgres
+      - Firestore
+      - K8s
+      - Prometheus
+      - Grafana
+      - GCP
     achievements:
       - description: Earning iso-27001, iso-27701 certification by providing documentations and technical support
       - description: Making team communication influentially and increasing production quality by introducing and fusing BDD into daily work
@@ -29,8 +37,10 @@ experiences:
     period: "2018/01 ~ 2018/12"
     title: "Backend Engineer"
     stack:
-      - Java/Apache Camel/Spring
+      - Java
       - JavaScript
+      - Apache Camel
+      - Spring
       - DB2
     achievements:
       - description: Implementing new features and web-app for system of future transfer and loaning system
@@ -40,8 +50,12 @@ experiences:
     period: "2014/11 ~ 2017/02"
     title: "Full Stack Engineer"
     stack:
-      - Java/Jsp/Spring
-      - JavaScript/JQuery/Ajax
+      - Java
+      - JavaScript
+      - Jsp
+      - Spring
+      - JQuery
+      - Ajax
     achievements:
       - description: Maintaining and developing websites and APIs for inventory management system and sale system
       - description: Guiding new collages as mentor

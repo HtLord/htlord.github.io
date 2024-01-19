@@ -4,14 +4,14 @@ import Profile from "../components/resume/Profile.astro";
 import Title from "../components/resume/Title.astro";
 import Experience from "../components/resume/Experience.astro";
 ---
-<html lang="en">
-<head>
-</head>
-<body>
-<div class=`fixed w-full min-h-full grid grid-cols-12`>
+<div class=`
+  grid grid-cols-12
+  px-[5%] 
+  shadow-gray-500`
+>
   <div class='
     flex flex-col min-h-full col-span-8
-    pt-16 pl-16 pr-4 pb-16
+    pt-4 pl-16 pr-4 pb-16
   '>
     <Title/>
     <Experience />
@@ -20,5 +20,3 @@ import Experience from "../components/resume/Experience.astro";
     <Profile/>
   </div>
 </div>
-</body>
-</html>

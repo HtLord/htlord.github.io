@@ -1,6 +1,7 @@
 ---
 import '@styles/tailwind.css';
 import { getEntry } from "astro:content";
+import TechStack from "./TechStack.astro";
 
 const resumeData =  await getEntry('resume', 'index');
 const experiences = resumeData.data.experiences;
@@ -34,7 +35,18 @@ const experiences = resumeData.data.experiences;
                         }
                     </ul>
                   </div>
-                  <div>techs:</div>
+                  <div>
+                    <p class="font-bold">
+                      techs:
+                        {
+                            exp.stack?.map((stack: any) => {
+                                return (
+                                    <TechStack value={stack}/>
+                                )
+                            })
+                        }
+                    </p>
+                  </div>
                 </div>
             )
         })
