@@ -2,6 +2,7 @@
 import '@styles/tailwind.css';
 import { getEntry } from "astro:content";
 import TechStack from "./TechStack.astro";
+import Reference from "./Reference.astro";
 
 const resumeData =  await getEntry('resume', 'index');
 const experiences = resumeData.data.experiences;
@@ -29,7 +30,20 @@ const experiences = resumeData.data.experiences;
                         {
                             exp.achievements?.map((arch: any) => {
                                 return (
-                                    <li>{arch.description}</li>
+                                    <li>
+                                        <span class="flex">
+                                            <div class="pr-2">
+                                                {arch.description}
+                                            </div>
+                                            {
+                                                arch.references?.map((reference: string, index: any) => {
+                                                    return (
+                                                        <Reference value={index+1} url={reference}/>
+                                                    )
+                                                })
+                                            }
+                                        </span>
+                                    </li>
                                 )
                             })
                         }

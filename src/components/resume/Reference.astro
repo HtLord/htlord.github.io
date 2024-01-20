@@ -1,0 +1,10 @@
+---
+import '@styles/tailwind.css';
+
+const { value, url } = Astro.props
+---
+<div class="text-blue print:hidden">
+  <a href={url}>
+    [{ value }]
+  </a>
+</div>

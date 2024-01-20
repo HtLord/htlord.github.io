@@ -29,9 +29,18 @@ experiences:
       - GCP
     achievements:
       - description: Earning iso-27001, iso-27701 certification by providing documentations and technical support
+        references:
+          - https://money.udn.com/money/story/11800/7674115
+          - http://localhost:4321/blog/story/iso-27001-27701-story
       - description: Making team communication influentially and increasing production quality by introducing and fusing BDD into daily work
+        references:
+          - http://localhost:4321/blog/java/cucumber-begin
+          - http://localhost:4321/blog/readings/test-driven-development-the-clean-coder
       - description: Increasing revenues and performance by optimizing usage of cloud resource and implementing several ways to monitoring resources
       - description: Increasing scalability and flexibility by refactoring architectures like migrate to multi-tenant and micro-service
+        references:
+          - http://localhost:4321/blog/career/imgrate-to-multi-tenancy-from-single/
+          - http://localhost:4321/blog/career/imgrate-to-microservice/
       - description: Attracting users to use and migrate to our system by building awesome features to solve clinics' complex jobs and problems
   - name: "HiTRUST"
     period: "2018/01 ~ 2018/12"
