@@ -20,6 +20,7 @@ const resume = defineCollection({
         name: z.string(),
         title: z.string(),
         summary: z.string(),
+        strengths: z.array(z.string()).optional(),
         skills: z.array(z.string()).optional(),
         experiences: z.array(z.object({
            name: z.string(),

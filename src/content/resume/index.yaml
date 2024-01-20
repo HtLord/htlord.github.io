@@ -2,13 +2,24 @@ name: Wei-Chen Huang
 title: Sr. Backend Software Engineer | SRE
 summary: |
   Hello I'm Wei-Chen.
+strengths:
+  - Communication
+  - Creativity
+  - Problem-Solve
 skills:
   - Java
-  - K8s
-  - GCP
   - Python
   - JavaScript
+  - Spring
   - NodeJs
+  - ReactJs
+  - Django
+  - Postgres
+  - Firestore
+  - K8s
+  - Prometheus
+  - Grafana
+  - GCP
 experiences:
   - name: "Dentall"
     period: "2019/06 ~ current"
