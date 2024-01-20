@@ -8,7 +8,7 @@ const educations = resumeData.data.educations;
 ---
 <Section title="Education">
     {
-        educations.map(edu => {
+        educations.map((edu: any) => {
             return (
                 <div>
                   <p>{ edu.degree }</p>

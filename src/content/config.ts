@@ -35,7 +35,7 @@ const resume = defineCollection({
             university: z.string(),
             degree: z.string(),
             period: z.string(),
-        })).optional(),
+        })),
     })
 })
 
