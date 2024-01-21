@@ -1,7 +1,10 @@
 name: Wei-Chen Huang
 title: Sr. Backend Software Engineer | SRE
 summary: |
-  Hello I'm Wei-Chen.
+  As a software engineer, I'm using modern programming language, tool, and
+  platform to help me to get through diverse projects. Besides, founding ways
+  to helping team member to feel free and confort. Using proper tools to solve
+  problems and sharping skills by lots of practice. Those are showing my passions.
 strengths:
   - Communication
   - Creativity
@@ -39,16 +42,23 @@ experiences:
       - Grafana
       - GCP
     achievements:
-      - description: Earning iso-27001, iso-27701 certification by providing documentations and technical support
+      - description: "Helping company first time to get iso certification 2022-version
+       of iso-27001 and iso-27701 certification by providing several 
+      technical support, new features and documents"
         references:
           - https://money.udn.com/money/story/11800/7674115
           - http://localhost:4321/blog/story/iso-27001-27701-story
-      - description: Making team communication influentially and increasing production quality by introducing and fusing BDD into daily work
+      - description: "Increasing production quality and making team 
+      communication influentially by introducing, coaching, and fusing BDD
+       into daily work"
         references:
           - http://localhost:4321/blog/java/cucumber-begin
           - http://localhost:4321/blog/readings/test-driven-development-the-clean-coder
-      - description: Increasing revenues and performance by optimizing usage of cloud resource and implementing several ways to monitoring resources
-      - description: Increasing scalability and flexibility by refactoring architectures like migrate to multi-tenant and micro-service
+      - description: "Increasing revenues and performance by optimizing usage 
+      of cloud resource and implementing several ways to manage and monitor 
+      resources"
+      - description: "Increasing scalability and flexibility by refactoring 
+      architectures like migrate to multi-tenant and micro-service"
         references:
           - http://localhost:4321/blog/career/imgrate-to-multi-tenancy-from-single/
           - http://localhost:4321/blog/career/imgrate-to-microservice/
