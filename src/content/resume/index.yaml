@@ -5,10 +5,6 @@ summary: |
   platform to help me to get through diverse projects. Besides, founding ways
   to helping team member to feel free and confort. Using proper tools to solve
   problems and sharping skills by lots of practice. Those are showing my passions.
-strengths:
-  - Communication
-  - Creativity
-  - Problem-Solve
 skills:
   - Java
   - Python
@@ -23,6 +19,18 @@ skills:
   - Prometheus
   - Grafana
   - GCP
+strengths:
+  - Communication
+  - Creativity
+  - Problem-Solve
+educations:
+  - university: "Feng Chia Univerity, Taichung, Taiwan"
+    degree: "BSc Computer Science"
+    period: "2009/9 ~ 2013/6"
+contacts:
+  - icon: none
+    name: email
+    value: s75757775@hotmail.com
 experiences:
   - name: "Dentall"
     period: "2019/06 ~ current"
@@ -89,8 +97,3 @@ experiences:
     achievements:
       - description: Maintaining and developing websites and APIs for inventory management system and sale system
       - description: Guiding new collages as mentor
-educations:
-  - university: "Feng Chia Univerity, Taichung, Taiwan"
-    degree: "BSc Computer Science"
-    period: "2009/9 ~ 2013/6"
-

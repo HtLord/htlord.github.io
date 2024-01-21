@@ -20,23 +20,36 @@ const resume = defineCollection({
         name: z.string(),
         title: z.string(),
         summary: z.string(),
-        strengths: z.array(z.string()).optional(),
         skills: z.array(z.string()).optional(),
-        experiences: z.array(z.object({
-           name: z.string(),
-           period: z.string(),
-            title: z.string(),
-            stack: z.array(z.string()).optional(),
-            achievements: z.array(z.object({
-                description: z.string(),
-                references: z.array(z.string()).optional(),
+        strengths: z.array(z.string()).optional(),
+        educations:
+            z.array(
+                z.object({
+                    university: z.string(),
+                    degree: z.string(),
+                    period: z.string(),
+                })
+            ),
+        contacts:
+            z.array(
+                z.object({
+                    icon: z.string(),
+                    name: z.string(),
+                    value: z.string(),
+                })
+            )
+                .optional(),
+        experiences: z.array(
+            z.object({
+                name: z.string(),
+                period: z.string(),
+                title: z.string(),
+                stack: z.array(z.string()).optional(),
+                achievements: z.array(z.object({
+                    description: z.string(),
+                    references: z.array(z.string()).optional(),
+                })).optional(),
             })).optional(),
-        })).optional(),
-        educations: z.array(z.object({
-            university: z.string(),
-            degree: z.string(),
-            period: z.string(),
-        })),
     })
 })
 
