@@ -7,5 +7,9 @@ const resumeData =  await getEntry('resume', 'index');
 <div>
   <h1>{ resumeData.data.name }</h1>
   <h1>{ resumeData.data.title }</h1>
-  <p class="px-16 my-8">{ resumeData.data.summary }</p>
+  <div class="flex">
+    <p class="mx-4 text-6xl">"</p>
+    <p class="px-4 my-8">{ resumeData.data.summary }</p>
+    <p class="mx-4 text-6xl">"</p>
+  </div>
 </div>
