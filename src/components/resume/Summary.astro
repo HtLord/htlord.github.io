@@ -5,7 +5,7 @@ import { getEntry } from "astro:content";
 const resumeData =  await getEntry('resume', 'index');
 ---
 <div class="flex items-center">
-  <p class="mx-4 text-6xl">"</p>
+  <div class="mx-4 text-6xl">"</div>
   <p class="">{ resumeData.data.summary }</p>
-  <p class="mx-4 text-6xl">"</p>
+  <div class="mx-4 text-6xl">"</div>
 </div>

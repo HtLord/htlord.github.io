@@ -4,24 +4,19 @@ import Profile from "../components/resume/Profile.astro";
 import Experience from "../components/resume/Experience.astro";
 import You from "../components/resume/You.astro";
 import Summary from "../components/resume/Summary.astro";
+import Skill from "../components/resume/Skill.astro";
+import Education from "../components/resume/Education.astro";
+import Strength from "../components/resume/Strength.astro";
 ---
 <div class=`
-  grid grid-cols-12
-  px-[5%] 
-  shadow-gray-500
-  print:min-h-[297mm]
-  print:min-w-[220mm]
+  min-h-[297mm] min-w-[220mm]
+  flex flex-col
   `
 >
-  <div class='
-    flex flex-col min-h-full col-span-8
-    pt-4 pl-16 pr-4 pb-16
-  '>
     <You/>
     <Summary/>
     <Experience />
-  </div>
-  <div class='min-h-full col-span-4 bg-gray-light p-4'>
-    <Profile/>
-  </div>
+    <Skill />
+    <Strength />
+    <Education />
 </div>
