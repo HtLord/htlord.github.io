@@ -6,7 +6,10 @@ import { getEntry } from "astro:content";
 const resumeData =  await getEntry('resume', 'index');
 const strengths = resumeData.data.strengths;
 ---
-<Section title="Strength">
+<Section
+    title="Strength"
+    printHidden="true"
+>
   <div class="flex flex-col flex-wrap m-4">
       {
           strengths?.map(str => { return (
