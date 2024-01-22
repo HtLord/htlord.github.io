@@ -1,6 +1,10 @@
 you:
   name: Wei-Chen Huang
   title: Sr. Backend Software Engineer | SRE
+  contacts:
+    - icon: none
+      name: email
+      value: s75757775@hotmail.com
 summary: |
   As a software engineer, I'm using modern programming language, tool, and
   platform to help me to get through diverse projects. Besides, founding ways
@@ -28,10 +32,6 @@ educations:
   - university: "Feng Chia Univerity, Taichung, Taiwan"
     degree: "BSc Computer Science"
     period: "2009/9 ~ 2013/6"
-contacts:
-  - icon: none
-    name: email
-    value: s75757775@hotmail.com
 experiences:
   - name: "Dentall"
     period: "2019/06 ~ current"

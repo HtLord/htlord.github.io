@@ -20,6 +20,14 @@ const resume = defineCollection({
         you: z.object({
             name: z.string(),
             title: z.string(),
+            contacts:
+                z.array(
+                    z.object({
+                        icon: z.string(),
+                        name: z.string(),
+                        value: z.string(),
+                    })
+                ).optional(),
         }),
         summary: z.string(),
         skills: z.array(z.string()).optional(),
@@ -32,15 +40,6 @@ const resume = defineCollection({
                     period: z.string(),
                 })
             ),
-        contacts:
-            z.array(
-                z.object({
-                    icon: z.string(),
-                    name: z.string(),
-                    value: z.string(),
-                })
-            )
-                .optional(),
         experiences: z.array(
             z.object({
                 name: z.string(),
