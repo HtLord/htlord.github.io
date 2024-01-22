@@ -1,17 +1,10 @@
 ---
 import '@styles/tailwind.css';
 import { getEntry } from "astro:content";
-import Contacts from "./Contacts.astro";
 
 const resumeData =  await getEntry('resume', 'index');
 ---
 <div>
   <h3>{ resumeData.data.name }</h3>
   <h4 class="text-gray">{ resumeData.data.title }</h4>
-  <Contacts displayInPrint />
-  <div class="flex">
-    <p class="mx-4 text-6xl">"</p>
-    <p class="px-4 my-8">{ resumeData.data.summary }</p>
-    <p class="mx-4 text-6xl">"</p>
-  </div>
 </div>

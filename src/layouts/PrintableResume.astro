@@ -1,0 +1,15 @@
+---
+import '@styles/tailwind.css';
+import Experience from "../components/resume/Experience.astro";
+import You from "../components/resume/You.astro";
+import Summary from "../components/resume/Summary.astro";
+---
+<div class=`
+  flex flex-col
+  print:min-h-[297mm]
+  print:min-w-[220mm]
+`>
+  <You/>
+  <Summary/>
+  <Experience />
+</div>

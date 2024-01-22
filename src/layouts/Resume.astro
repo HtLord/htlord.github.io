@@ -1,8 +1,9 @@
 ---
 import '@styles/tailwind.css';
 import Profile from "../components/resume/Profile.astro";
-import Title from "../components/resume/Title.astro";
 import Experience from "../components/resume/Experience.astro";
+import You from "../components/resume/You.astro";
+import Summary from "../components/resume/Summary.astro";
 ---
 <div class=`
   grid grid-cols-12
@@ -16,7 +17,8 @@ import Experience from "../components/resume/Experience.astro";
     flex flex-col min-h-full col-span-8
     pt-4 pl-16 pr-4 pb-16
   '>
-    <Title/>
+    <You/>
+    <Summary/>
     <Experience />
   </div>
   <div class='min-h-full col-span-4 bg-gray-light p-4'>
