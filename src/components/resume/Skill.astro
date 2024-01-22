@@ -8,7 +8,7 @@ const resumeData =  await getEntry('resume', 'index');
 const skills = resumeData.data.skills;
 ---
 <Section title="Skill">
-    <div class="flex flex-wrap m-4">
+    <div class="flex flex-wrap">
     {
         skills?.map((skill) => {
             return (

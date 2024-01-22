@@ -1,19 +1,14 @@
 ---
 import '@styles/tailwind.css';
 
-const { title, printHidden } = Astro.props;
+const { title } = Astro.props;
 ---
-<div
-    class:list={[
-        "flex flex-col items-center mb-4",
-        printHidden ? "print:hidden" : "",
-    ]}
->
-    <h3>
+<div>
+    <h3 class="
+        p-2
+        border-b-2 border-black
+    ">
         {title}
     </h3>
-    <hr class="h-1 w-[70%] mb-2 bg-black">
-    <div class="px-[10%]">
-      <slot />
-    </div>
+    <slot />
 </div>
