@@ -17,8 +17,10 @@ const blog = defineCollection({
 const resume = defineCollection({
     type: 'data',
     schema: z.object({
-        name: z.string(),
-        title: z.string(),
+        you: z.object({
+            name: z.string(),
+            title: z.string(),
+        }),
         summary: z.string(),
         skills: z.array(z.string()).optional(),
         strengths: z.array(z.string()).optional(),
