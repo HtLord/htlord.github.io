@@ -4,8 +4,9 @@ import {getEntry} from "astro:content";
 
 const resumeData =  await getEntry('resume', 'index');
 const contacts = resumeData.data.contacts;
+const { displayInPrint } = Astro.props
 ---
-<div class="flex flex-col items-center">
+<div class=`flex flex-col items-center ${displayInPrint? 'hidden' : ''}`>
     {
         contacts?.map(contact => {
            return (
