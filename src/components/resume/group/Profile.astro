@@ -1,0 +1,19 @@
+---
+import '../../../styles/tailwind.css';
+import Skill from "../Skill.astro";
+import Education from "../Education.astro";
+import MyAvatar from "../../MyAvatar.astro";
+import Strength from "../Strength.astro";
+---
+
+<div class="grid grid-cols-2 grid-rols-2 gap-4 p-4 mb-8">
+  <div class="row-span-2 col-span-1">
+    <Skill />
+  </div>
+  <div>
+    <Strength />
+  </div>
+  <div>
+    <Education />
+  </div>
+</div>

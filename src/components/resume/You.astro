@@ -5,8 +5,20 @@ import Contacts from "./Contacts.astro";
 
 const resumeData =  await getEntry('resume', 'index');
 ---
-<div>
-  <h3>{ resumeData.data.you.name }</h3>
-  <h4 class="text-gray">{ resumeData.data.you.title }</h4>
-  <Contacts />
+<div
+    class="
+      flex justify-between
+    "
+>
+  <div
+      class="flex flex-col"
+  >
+    <h3>{ resumeData.data.you.name }</h3>
+    <h4 class="text-gray">{ resumeData.data.you.title }</h4>
+  </div>
+  <div
+      class="flex"
+  >
+    <Contacts />
+  </div>
 </div>

@@ -1,22 +1,17 @@
 ---
 import '@styles/tailwind.css';
-import Profile from "../components/resume/Profile.astro";
+import Profile from "../components/resume/group/Profile.astro";
 import Experience from "../components/resume/Experience.astro";
 import You from "../components/resume/You.astro";
 import Summary from "../components/resume/Summary.astro";
-import Skill from "../components/resume/Skill.astro";
-import Education from "../components/resume/Education.astro";
-import Strength from "../components/resume/Strength.astro";
 ---
 <div class=`
   min-h-[297mm] min-w-[220mm]
   flex flex-col
   `
 >
-    <You/>
-    <Summary/>
-    <Experience />
-    <Skill />
-    <Strength />
-    <Education />
+  <You/>
+  <Summary/>
+  <Profile />
+  <Experience />
 </div>
