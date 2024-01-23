@@ -1,11 +1,14 @@
 ---
 import '@styles/tailwind.css'
-import PrintableResume from "../../layouts/PrintableResume.astro";
+import Resume from "../../layouts/Resume.astro";
 ---
 <html lang="en">
     <head>
     </head>
     <body>
-      <PrintableResume/>
+        <Resume/>
+        <script>
+          print();
+        </script>
     </body>
 </html>

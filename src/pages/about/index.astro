@@ -2,6 +2,7 @@
 import Layout from '../../layouts/BlogPost.astro';
 import {SITE} from "../../consts";
 import Resume from "../../layouts/Resume.astro";
+import PrintMe from "../../components/resume/PrintMe.astro";
 ---
 
 <Layout
@@ -11,5 +12,6 @@ import Resume from "../../layouts/Resume.astro";
 	heroImage={SITE.aboutMeHeroImage}
 	tags={[]}
 >
+	<PrintMe />
 	<Resume />
 </Layout>
