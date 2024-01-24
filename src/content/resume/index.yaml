@@ -1,6 +1,6 @@
 you:
   name: Wei-Chen Huang
-  title: Sr. Backend Software Engineer | SRE
+  title: Sr. Backend Software Engineer
   contacts:
     - icon: none
       name: email
@@ -35,7 +35,7 @@ educations:
 experiences:
   - name: "Dentall"
     period: "2019/06 ~ current"
-    title: "Sr. Backend Engineer | SRE"
+    title: "Sr. Backend Engineer"
     stack:
       - Java
       - JavaScript
