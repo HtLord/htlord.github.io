@@ -7,15 +7,15 @@ you:
       value: s75757775@hotmail.com
 summary: |
   As a software engineer, I'm using modern programming language, tool, and
-  platform to help me to get through diverse projects. Besides, founding ways
-  to helping team member to feel free and confort. Using proper tools to solve
-  problems and sharping skills by lots of practice. Those are showing my passions.
+  platform to help me to get through diverse projects. Besides, founding ways 
+  to help team members feel free and comfortable, using proper tools to solve problems, 
+  and sharpening skills through lots of practice showcase my passions as a software engineer.
 skills:
   - Java
   - Python
   - JavaScript
   - Spring
-  - NodeJs
+  - Node.js
   - ReactJs
   - Django
   - Postgres
@@ -27,21 +27,21 @@ skills:
 strengths:
   - Communication
   - Creativity
-  - Problem-Solve
+  - Problem-Solving
 educations:
-  - university: "Feng Chia Univerity, Taichung, Taiwan"
+  - university: "Feng Chia University, Taichung, Taiwan"
     degree: "BSc Computer Science"
-    period: "2009/9 ~ 2013/6"
+    period: "2009/9 - 2013/6"
 experiences:
   - name: "Dentall"
-    period: "2019/06 ~ current"
+    period: "2019/06 - current"
     title: "Sr. Backend Engineer"
     stack:
       - Java
       - JavaScript
       - Python
       - Spring
-      - NodeJs
+      - Node.js
       - ReactJs
       - Django
       - Postgres
@@ -51,29 +51,29 @@ experiences:
       - Grafana
       - GCP
     achievements:
+      - description: "Increasing scalability and flexibility by refactoring 
+      architectures,such as apply multi-tenant and micro-service"
+        references:
+          - https://htlord.github.io/blog/career/imgrate-to-multi-tenancy-from-single/
+          - https://htlord.github.io/blog/career/imgrate-to-microservice/
+      - description: "Increasing production quality and making team 
+      communication influentially by introducing, coaching, and fusing BDD
+       into daily work"
+        references:
+          - https://htlord.github.io/blog/java/cucumber-begin
+          - https://htlord.github.io/blog/readings/test-driven-development-the-clean-coder
+      - description: "Increasing revenues and performance by optimizing usage 
+      of cloud resource, tunning api, and implementing several ways to manage and monitor 
+      resources"
+      - description: "Attracting users to our system and encouraging migration by building innovative features to solve complex tasks and issues for clinics."
       - description: "Helping company first time to get iso certification 2022-version
        of iso-27001 and iso-27701 certification by providing several 
       technical support, new features and documents"
         references:
           - https://money.udn.com/money/story/11800/7674115
-          - http://localhost:4321/blog/story/iso-27001-27701-story
-      - description: "Increasing production quality and making team 
-      communication influentially by introducing, coaching, and fusing BDD
-       into daily work"
-        references:
-          - http://localhost:4321/blog/java/cucumber-begin
-          - http://localhost:4321/blog/readings/test-driven-development-the-clean-coder
-      - description: "Increasing revenues and performance by optimizing usage 
-      of cloud resource and implementing several ways to manage and monitor 
-      resources"
-      - description: "Increasing scalability and flexibility by refactoring 
-      architectures like migrate to multi-tenant and micro-service"
-        references:
-          - http://localhost:4321/blog/career/imgrate-to-multi-tenancy-from-single/
-          - http://localhost:4321/blog/career/imgrate-to-microservice/
-      - description: Attracting users to use and migrate to our system by building awesome features to solve clinics' complex jobs and problems
+          - https://htlord.github.io/blog/story/iso-27001-27701-story
   - name: "HiTRUST"
-    period: "2018/01 ~ 2018/12"
+    period: "2018/01 - 2018/12"
     title: "Backend Engineer"
     stack:
       - Java
@@ -86,7 +86,7 @@ experiences:
       - description: Increasing flexibility by implementing multiple protocols in notification system with Apache Camel
       - description: Providing technical support like documents, monitoring, deployment for clinics of the bank
   - name: "Synnex Group"
-    period: "2014/11 ~ 2017/02"
+    period: "2014/11 - 2017/02"
     title: "Full Stack Engineer"
     stack:
       - Java
