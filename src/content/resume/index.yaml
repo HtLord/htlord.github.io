@@ -51,28 +51,14 @@ experiences:
       - Grafana
       - GCP
     achievements:
-      - description: "Increasing scalability and flexibility by refactoring 
-      architectures,such as apply multi-tenant and micro-service"
-        references:
-          - https://htlord.github.io/blog/career/imgrate-to-multi-tenancy-from-single/
-          - https://htlord.github.io/blog/career/imgrate-to-microservice/
-      - description: "Increasing production quality and making team 
-      communication influentially by introducing, coaching, and fusing BDD
-       into daily work"
-        references:
-          - https://htlord.github.io/blog/java/cucumber-begin
-          - https://htlord.github.io/blog/readings/test-driven-development-the-clean-coder
-      - description: "Increasing revenues and performance by optimizing usage 
-      of cloud resource, tunning api, and implementing several ways to manage and monitor 
-      resources"
-      - description: "Attracting users to our system and encouraging migration by building innovative features to solve complex tasks and issues for clinics."
-      - description: "Helping company first time to get iso certification 2022-version
-       of iso-27001 and iso-27701 certification by providing several 
-      technical support, new features and documents"
-        references:
-          - https://money.udn.com/money/story/11800/7674115
-          - https://htlord.github.io/blog/story/iso-27001-27701-story
-  - name: "HiTRUST"
+      - description: |
+        Designed and restructured cloud-based services in 2 phases, first migrating on-premises applications to monolithic cloud-based services, and then transitioning to microservices architecture.
+      - description: |
+        Introduced 3 software engineering practices across several distinct teams to streamline communication and ensure alignment on shared goals.
+      - description: |
+        Earned and renewed iso27001, 27701 cerficiation by developing systems, refactoring architecture, and guides to meet certification requirements.
+      - description: |
+        Integrated multiple vendors to enhance system connectivity, resulting in a 20% increase in user adoption
     period: "2018/01 - 2018/12"
     title: "Backend Engineer"
     stack:
