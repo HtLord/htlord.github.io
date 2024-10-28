@@ -51,14 +51,13 @@ experiences:
       - Grafana
       - GCP
     achievements:
-      - description: |
-        Designed and restructured cloud-based services in 2 phases, first migrating on-premises applications to monolithic cloud-based services, and then transitioning to microservices architecture.
-      - description: |
-        Introduced 3 software engineering practices across several distinct teams to streamline communication and ensure alignment on shared goals.
-      - description: |
-        Earned and renewed iso27001, 27701 cerficiation by developing systems, refactoring architecture, and guides to meet certification requirements.
-      - description: |
-        Integrated 8 vendors to enhance system connectivity, resulting in a 20% increase in user adoption
+      - description: Designed and restructured cloud-based services step by step, first migrating on-premises applications to monolithic cloud-based services, and then transitioning to microservices architecture.
+      - description: Introduced 3 software engineering practices across several distinct teams to streamline communication and ensure alignment on shared goals.
+      - description: Migrated datasets from 3 vendors and integrated 2 service providers to meet customized requirements, resulting in a 20% increase in user adoption.
+      - description: Refactored code, optimized queries and entity relationships to prevent unnecessary data fetching, resulting in a 10x performance improvement.
+      - description: Built toolkit enabling teams to quickly switch server versions, dump various datasets, and perform essential database tasks, saving valuable time.
+      - description: Earned and renewed ISO 27001 and 27701 certifications by implementing monitoring mechanisms, principles, and guidelines to ensure compliance with certification standards.
+  - name: "HiTrust"
     period: "2018/01 - 2018/12"
     title: "Backend Engineer"
     stack:
@@ -68,9 +67,9 @@ experiences:
       - Spring
       - DB2
     achievements:
-      - description: Implementing new features and web-app for system of future transfer and loaning system
-      - description: Increasing flexibility by implementing multiple protocols in notification system with Apache Camel
-      - description: Providing technical support like documents, monitoring, deployment for clinics of the bank
+      - description: Developed new features and a web application for the future transfer and loaning system.
+      - description: Enhanced flexibility in the notification system by implementing multiple protocols using Apache Camel.
+      - description: Delivered technical support for bank clinics, including documentation, monitoring, and deployment assistance.
   - name: "Synnex Group"
     period: "2014/11 - 2017/02"
     title: "Full Stack Engineer"
@@ -82,5 +81,5 @@ experiences:
       - JQuery
       - Ajax
     achievements:
-      - description: Maintaining and developing websites and APIs for inventory management system and sale system
-      - description: Guiding new collages as mentor
+      - description: Developed, Tested and maintained websites and APIs for the inventory management and sales systems.
+      - description: Guided new colleagues in development, testing, and release processes, ensuring adherence to company policies.
