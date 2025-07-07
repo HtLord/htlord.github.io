@@ -51,12 +51,12 @@ experiences:
       - Grafana
       - GCP
     achievements:
-      - description: Designed and restructured cloud-based services step by step, first migrating on-premises applications to monolithic cloud-based services, and then transitioning to microservices architecture.
-      - description: Introduced 3 software engineering practices across several distinct teams to streamline communication and ensure alignment on shared goals.
-      - description: Migrated datasets from 3 vendors and integrated 2 service providers to meet customized requirements, resulting in a 20% increase in user adoption.
-      - description: Refactored code, optimized queries and entity relationships to prevent unnecessary data fetching, resulting in a 10x performance improvement.
-      - description: Built toolkit enabling teams to quickly switch server versions, dump various datasets, and perform essential database tasks, saving valuable time.
-      - description: Earned and renewed ISO 27001 and 27701 certifications by implementing monitoring mechanisms, principles, and guidelines to ensure compliance with certification standards.
+      - description: Achieved a 10x performance improvement by create new architecture, refactoring code, optimizing database queries, and redesigning entity relationships to eliminate unnecessary data fetching.
+      - description: Increased user adoption by 20% through successful migration and integration of datasets from 3 vendors and 2 external service providers, tailored to meet diverse customization needs.
+      - description: Maintained ISO 27001 and 27701 certifications by establishing continuous monitoring mechanisms and enforcing compliance principles and guidelines across systems.
+      - description: Improved cross-team collaboration by introducing 3 key engineering practices across multiple teams, enhancing alignment and communication.
+      - description: Saved engineering hours by building a developer toolkit to quickly switch server versions, manage datasets, and perform essential DB operations with minimal setup time.
+      - description: Led the phased modernization of core services, migrating on-prem applications to cloud-based monoliths, then evolving to a microservices architecture.
   - name: "HiTrust"
     period: "2018/01 - 2018/12"
     title: "Backend Engineer"
