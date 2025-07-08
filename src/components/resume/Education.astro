@@ -1,21 +1,36 @@
 ---
 import '@styles/tailwind.css';
-import Section from "./Section.astro";
 import {getEntry} from "astro:content";
 
 const resumeData =  await getEntry('resume', 'index');
 const educations = resumeData.data.educations;
 ---
-<Section title="Education">
-    {
-        educations.map((edu: any) => {
-            return (
-                <div class="row-span-1 col-span-1">
-                  <div>{ edu.degree }</div>
-                  <div>{ edu.university }</div>
-                  <div>{ edu.period }</div>
+{
+    educations.map((edu: any) => {
+        return (
+            <div class="mb-8">
+              <div class="
+                mb-2
+                grid grid-cols-12
+                border-b-2 border-black border-dotted
+              ">
+                <div class="col-span-8 row-span-2">
+                  <h3>
+                    Education
+                  </h3>
+                  <h6>
+                      {edu.degree}
+                  </h6>
                 </div>
-            )
-        })
-    }
-</Section>
+                <div class="col-span-4 grid grid-rows-2">
+                  <div> {edu.university}</div>
+                  <div>{edu.period}</div>
+                </div>
+              </div>
+              <div id="achievement">
+                Built a prototype iris recognition system on Android, integrating image preprocessing, feature extraction, and matching algorithms for biometric authentication.
+              </div>
+            </div>
+        )
+    })
+}
