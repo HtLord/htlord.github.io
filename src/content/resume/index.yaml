@@ -11,10 +11,17 @@ summary: |
   maintainable systems through thoughtful architecture and continuous improvement.
 skills:
   - Java
-  - Python
   - JavaScript
+  - Python
+  - Spring
+  - Node.js
   - ReactJs
+  - Django
+  - Postgres
+  - Firestore
   - K8s
+  - Prometheus
+  - Grafana
   - GCP
 strengths:
   - Communication
