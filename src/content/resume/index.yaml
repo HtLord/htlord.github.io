@@ -6,23 +6,15 @@ you:
       name: email
       value: s75757775@hotmail.com
 summary: |
-  As a software engineer, I'm using modern programming language, tool, and
-  platform to help me to get through diverse projects. Besides, founding ways 
-  to help team members feel free and comfortable, using proper tools to solve problems, 
-  and sharpening skills through lots of practice showcase my passions as a software engineer.
+  Passionate software engineer experienced in modern languages, tools, and cloud platforms.
+  Known for driving performance, improving team practices, and delivering scalable, 
+  maintainable systems through thoughtful architecture and continuous improvement.
 skills:
   - Java
   - Python
   - JavaScript
-  - Spring
-  - Node.js
   - ReactJs
-  - Django
-  - Postgres
-  - Firestore
   - K8s
-  - Prometheus
-  - Grafana
   - GCP
 strengths:
   - Communication
@@ -65,9 +57,7 @@ experiences:
       - Spring
       - DB2
     achievements:
-      - description: Developed new features and a web application for the future transfer and loaning system.
-      - description: Enhanced flexibility in the notification system by implementing multiple protocols using Apache Camel.
-      - description: Delivered technical support for bank clinics, including documentation, monitoring, and deployment assistance.
+      - description: Led feature development for a loan system, enhanced the notification system with multi-protocol support via Apache Camel, and provided end-to-end technical support including documentation, monitoring, and deployment for banking operations.
   - name: "Synnex Group"
     period: "2014/11 - 2017/02"
     title: "Full Stack Engineer"
@@ -79,5 +69,5 @@ experiences:
       - JQuery
       - Ajax
     achievements:
-      - description: Developed, Tested and maintained websites and APIs for the inventory management and sales systems.
-      - description: Guided new colleagues in development, testing, and release processes, ensuring adherence to company policies.
+      - description: Built and maintained websites and APIs for inventory and sales systems, while mentoring new team members on development, testing, and release workflows to ensure consistency with company standards.
+
