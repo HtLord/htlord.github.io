@@ -1,0 +1,83 @@
+you:
+  name: 黃偉程
+  title: 資深後端軟體工程師
+  contacts:
+    - icon: none
+      name: email
+      value: s75757775@hotmail.com
+summary: |
+  作為一名軟體工程師，我使用現代編程語言、工具和平台來完成多樣化的項目。此外，找到方法讓團隊成員感到自由和舒適，
+  使用適當的工具解決問題，並通過大量的練習提高技能，展現了我對軟體工程的熱情。
+skills:
+  - Java
+  - Python
+  - JavaScript
+  - Spring
+  - Node.js
+  - ReactJs
+  - Django
+  - Postgres
+  - Firestore
+  - K8s
+  - Prometheus
+  - Grafana
+  - GCP
+strengths:
+  - 溝通 
+  - 創造力
+  - 問題解決
+educations:
+  - university: "逢甲大學"
+    degree: "資訊與電腦工程學系"
+    period: "2009/9 - 2013/6"
+experiences:
+  - name: "Dentall"
+    period: "2019/06 - current"
+    title: "資深後酸軟體工程師"
+    stack:
+      - Java
+      - JavaScript
+      - Python
+      - Spring
+      - Node.js
+      - ReactJs
+      - Django
+      - Postgres
+      - Firestore
+      - K8s
+      - Prometheus
+      - Grafana
+      - GCP
+    achievements:
+      - description: 分步設計和重構基於雲端的服務，首先將本地應用遷移到單體雲端服務，隨後轉型為微服務架構。
+      - description: 在多個不同團隊中引入三種軟體工程實踐，簡化了溝通並確保在共同目標上的一致性。
+      - description: 遷移來自三家供應商的數據集並整合兩個服務提供商，以滿足定制需求，促使用戶採用率提升20%。
+      - description: 重構代碼，優化查詢和實體關係以防止不必要的數據提取，性能提升10倍。
+      - description: 構建工具包，使團隊能快速切換伺服器版本、轉儲不同數據集並執行必要的數據庫任務，節省了寶貴時間。
+      - description: 通過實施監控機制、原則和指南，確保符合認證標準，獲得並更新ISO 27001和27701認證。
+  - name: "網際威信"
+    period: "2018/01 - 2018/12"
+    title: "後端工程師"
+    stack:
+      - Java
+      - JavaScript
+      - Apache Camel
+      - Spring
+      - DB2
+    achievements:
+      - description: 開發未來轉帳和貸款系統的新功能和網頁應用程式。
+      - description: 通過使用Apache Camel實現多種協議，增強通知系統的靈活性。
+      - description: 為銀行診所提供技術支持，包括文檔、監控和部署協助。
+  - name: "聯強國際"
+    period: "2014/11 - 2017/02"
+    title: "全端工程師"
+    stack:
+      - Java
+      - JavaScript
+      - Jsp
+      - Spring
+      - JQuery
+      - Ajax
+    achievements:
+      - description: 為庫存管理和銷售系統開發、測試並維護網站和API。
+      - description: 指導新同事進行開發、測試和發布流程，確保遵守公司政策。
