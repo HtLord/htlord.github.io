@@ -49,10 +49,9 @@ experiences:
       - Grafana
       - GCP
     achievements:
-      - description: Achieved a 10x performance improvement by create new architecture, refactoring code, optimizing database queries, and redesigning entity relationships to eliminate unnecessary data fetching.
-      - description: Increased usage by 20% through successful migration and integration of datasets from multiple vendors and external service providers, tailored to meet diverse customization needs.
-      - description: Established ISO 27001 and 27701 compliance frameworks by building comprehensive workflows including risk assessment procedures, access control policies, data privacy impact assessments, and incident response protocols. Implemented continuous monitoring mechanisms, conducted regular security audits, and enforced compliance principles across all systems through detailed operational guidelines and cross-functional training programs.
-      - description: Strengthened team capabilities and code quality by introducing varied programming paradigms, DDD, BDD, and tools to make the product and codebase more robust and maintainable.
+      - description: Achieved 10x performance improvement (response time 5s → 0.5s) on a system handling 40–60 RPS by redesigning ORM entity relationships and eliminating N+1 queries; increased client count across multiple vendors through dataset migration and integration.
+      - description: Designed an extensible rule engine for Taiwan National Health Insurance (NHI) compliance supporting 100+ data formats and 200+ rule combinations, validated by 10,000+ Gherkin scenarios; established ISO 27001/27701 frameworks covering risk assessment, access control, and data privacy impact assessments.
+      - description: Established CI/CD pipelines (GitHub Actions, Cloud Run) and grew test coverage from ~50% to ~80%; introduced DDD, BDD, and event-driven patterns across a backend team of 6, improving architecture consistency and delivery reliability.
   - name: "HiTrust"
     period: "2018/01 - 2018/12"
     title: "Backend Engineer"
