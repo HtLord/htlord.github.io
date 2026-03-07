@@ -6,9 +6,10 @@ you:
       name: email
       value: s75757775@hotmail.com
 summary: |
-  Passionate software engineer experienced in modern languages, tools, and cloud platforms.
-  Known for driving performance, improving team practices, and delivering scalable, 
-  maintainable systems through thoughtful architecture and continuous improvement.
+  Backend engineer with 10+ years of experience building scalable systems in healthcare SaaS
+  and regulated environments. Known for driving performance improvements, elevating team
+  engineering practices, and delivering maintainable systems through thoughtful architecture
+  and continuous improvement.
 skills:
   - Java
   - JavaScript
@@ -24,7 +25,7 @@ skills:
   - GCP
 strengths:
   - Building and leading backend teams through DDD, TDD, and BDD practices
-  - Effective cross-team communication in Agile/Scrum environments and translating technical concepts for non-technical stakeholders
+  - Clarifying fuzzy requirements into clear boundaries and translating them into working products or features; bridges technical and non-technical perspectives
   - System architecture design and performance optimization
 educations:
   - university: "Feng Chia University, Taichung, Taiwan"
@@ -51,7 +52,7 @@ experiences:
     achievements:
       - description: Achieved 10x performance improvement (response time 5s → 0.5s) on a system handling 40–60 RPS by redesigning ORM entity relationships and eliminating N+1 queries; increased client count across multiple vendors through dataset migration and integration.
       - description: Designed an extensible rule engine for Taiwan National Health Insurance (NHI) compliance supporting 100+ data formats and 200+ rule combinations, validated by 10,000+ Gherkin scenarios; established ISO 27001/27701 frameworks covering risk assessment, access control, and data privacy impact assessments.
-      - description: Established CI/CD pipelines (GitHub Actions, Cloud Run) and grew test coverage from ~50% to ~80%; introduced DDD, BDD, and event-driven patterns across a backend team of 6, improving architecture consistency and delivery reliability.
+      - description: Established CI/CD pipelines (GitHub Actions, Cloud Run) and grew test coverage from ~50% to ~80%; led the backend team in adopting DDD, BDD, and event-driven patterns, improving architecture consistency and delivery reliability.
   - name: "HiTrust"
     period: "2018/01 - 2018/12"
     title: "Backend Engineer"
