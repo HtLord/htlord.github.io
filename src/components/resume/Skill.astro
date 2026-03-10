@@ -1,20 +1,14 @@
 ---
 import '@styles/tailwind.css';
 import Section from "./Section.astro";
-import SkillChip from "./SkillChip.astro";
+import TechStack from "./TechStack.astro";
 import { getEntry } from "astro:content";
 
-const resumeData =  await getEntry('resume', 'index');
+const resumeData = await getEntry('resume', 'index');
 const skills = resumeData.data.skills;
 ---
 <Section title="Skill">
-    <div class="flex flex-wrap">
-    {
-        skills?.map((skill) => {
-            return (
-                <SkillChip value={skill} />
-            )
-        })
-    }
-    </div>
+  <p class="font-bold">
+    {skills?.map((skill: any) => <TechStack value={skill}/>)}
+  </p>
 </Section>

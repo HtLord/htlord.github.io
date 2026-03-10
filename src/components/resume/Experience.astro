@@ -1,7 +1,6 @@
 ---
 import '@styles/tailwind.css';
 import { getEntry } from "astro:content";
-import TechStack from "./TechStack.astro";
 import Reference from "./Reference.astro";
 
 const resumeData =  await getEntry('resume', 'index');
@@ -9,9 +8,9 @@ const experiences = resumeData.data.experiences;
 ---
 <div class="px-4">
     {
-        experiences?.map((exp: any) => {
+        experiences?.map((exp: any, index: number) => {
             return (
-                <div class="mb-8">
+                <div class={`mb-8 ${index === 1 ? 'print:break-before-page' : ''}`}>
                   <div class="
                     mb-2
                     grid grid-cols-12
@@ -48,18 +47,6 @@ const experiences = resumeData.data.experiences;
                             })
                         }
                     </ul>
-                  </div>
-                  <div>
-                    <p class="font-bold">
-                      techs:
-                        {
-                            exp.stack?.map((stack: any) => {
-                                return (
-                                    <TechStack value={stack}/>
-                                )
-                            })
-                        }
-                    </p>
                   </div>
                 </div>
             )
