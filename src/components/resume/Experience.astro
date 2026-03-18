@@ -25,28 +25,40 @@ const experiences = resumeData.data.experiences;
                     </div>
                   </div>
                   <div id="achievement">
-                    <ul class="list-disc pl-8 mb-2">
-                        {
-                            exp.achievements?.map((arch: any) => {
-                                return (
-                                    <li>
-                                        <span class="flex">
-                                            <div class="pr-2">
-                                                {arch.description}
-                                            </div>
-                                            {
-                                                arch.references?.map((reference: string, index: any) => {
-                                                    return (
-                                                        <Reference value={index+1} url={reference}/>
-                                                    )
-                                                })
-                                            }
-                                        </span>
-                                    </li>
-                                )
-                            })
-                        }
-                    </ul>
+                    {exp.projects ? (
+                      <ul class="list-disc pl-8 mb-2">
+                        {exp.projects.map((proj: any) => (
+                          <li class="mb-1">
+                            <span class="font-semibold">{proj.name}</span>
+                            {proj.stack && (
+                              <span class="text-gray-500"> - {proj.stack.join(' / ')}</span>
+                            )}
+                            {proj.points ? (
+                              <ul class="list-disc pl-4">
+                                {proj.points.map((pt: string) => (
+                                  <li>{pt}</li>
+                                ))}
+                              </ul>
+                            ) : (
+                              <div class="pr-2">{proj.description}</div>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <ul class="list-disc pl-8 mb-2">
+                        {exp.achievements?.map((arch: any) => (
+                          <li>
+                            <span class="flex">
+                              <div class="pr-2">{arch.description}</div>
+                              {arch.references?.map((reference: string, index: any) => (
+                                <Reference value={index+1} url={reference}/>
+                              ))}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 </div>
             )

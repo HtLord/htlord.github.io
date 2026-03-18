@@ -29,7 +29,7 @@ const resume = defineCollection({
                     })
                 ).optional(),
         }),
-        summary: z.string(),
+        summary: z.string().optional(),
         skills: z.array(z.string()).optional(),
         strengths: z.array(z.string()).optional(),
         educations:
@@ -49,6 +49,12 @@ const resume = defineCollection({
                 achievements: z.array(z.object({
                     description: z.string(),
                     references: z.array(z.string()).optional(),
+                })).optional(),
+                projects: z.array(z.object({
+                    name: z.string(),
+                    stack: z.array(z.string()).optional(),
+                    description: z.string().optional(),
+                    points: z.array(z.string()).optional(),
                 })).optional(),
             })).optional(),
     })
