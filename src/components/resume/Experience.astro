@@ -6,6 +6,14 @@ import Reference from "./Reference.astro";
 const resumeData =  await getEntry('resume', 'index');
 const experiences = resumeData.data.experiences;
 ---
+<style>
+@media print {
+  li {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+}
+</style>
 <div class="px-4">
     {
         experiences?.map((exp: any, index: number) => {
