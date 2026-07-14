@@ -1,9 +1,8 @@
 ---
 import '@styles/tailwind.css';
-import { getEntry } from "astro:content";
 import Contacts from "./Contacts.astro";
 
-const resumeData =  await getEntry('resume', 'index');
+const { data: resumeData } = Astro.props;
 ---
 <div
     class="
@@ -20,8 +19,8 @@ const resumeData =  await getEntry('resume', 'index');
       print:col-span-8 print:justify-self-end
       "
   >
-    <h3>{ resumeData.data.you.name }</h3>
-    <h4 class="text-gray">{ resumeData.data.you.title }</h4>
+    <h3>{ resumeData.you.name }</h3>
+    <h4 class="text-gray">{ resumeData.you.title }</h4>
   </div>
-  <Contacts />
+  <Contacts data={resumeData} />
 </div>

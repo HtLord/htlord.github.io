@@ -1,10 +1,9 @@
 ---
 import '@styles/tailwind.css';
-import { getEntry } from "astro:content";
 import Reference from "./Reference.astro";
 
-const resumeData =  await getEntry('resume', 'index');
-const experiences = resumeData.data.experiences;
+const { data: resumeData } = Astro.props;
+const experiences = resumeData.experiences;
 ---
 <style>
 @media print {

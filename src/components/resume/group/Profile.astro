@@ -1,9 +1,10 @@
 ---
 import '../../../styles/tailwind.css';
 import Skill from "../Skill.astro";
-import Education from "../Education.astro";
+
+const { data } = Astro.props;
 ---
 
 <div class="px-4 mb-8 print:mb-4">
-  <Skill />
+  <Skill data={data} />
 </div>

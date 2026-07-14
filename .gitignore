@@ -22,3 +22,9 @@ pnpm-debug.log*
 
 # IDE
 .idea/
+
+# --- private job-search material (must stay off the public site) ---
+job-tracker.csv
+src/data/
+src/pages/resume/inventory.astro
+src/pages/job-tracker/

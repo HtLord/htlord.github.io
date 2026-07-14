@@ -1,9 +1,8 @@
 ---
 import '@styles/tailwind.css';
-import {getEntry} from "astro:content";
 
-const resumeData =  await getEntry('resume', 'index');
-const educations = resumeData.data.educations;
+const { data: resumeData } = Astro.props;
+const educations = resumeData.educations;
 ---
 {
     educations.map((edu: any) => {

@@ -1,13 +1,12 @@
 ---
 import '@styles/tailwind.css';
-import { getEntry } from "astro:content";
 
-const resumeData =  await getEntry('resume', 'index');
+const { data: resumeData } = Astro.props;
 ---
-{resumeData.data.summary && (
+{resumeData.summary && (
   <div class="flex items-center">
     <div class="mx-4 text-6xl">"</div>
-    <p class="">{ resumeData.data.summary }</p>
+    <p class="">{ resumeData.summary }</p>
     <div class="mx-4 text-6xl">"</div>
   </div>
 )}

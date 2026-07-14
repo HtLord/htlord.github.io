@@ -2,10 +2,9 @@
 import '@styles/tailwind.css';
 import Section from "./Section.astro";
 import TechStack from "./TechStack.astro";
-import { getEntry } from "astro:content";
 
-const resumeData = await getEntry('resume', 'index');
-const skills = resumeData.data.skills;
+const { data: resumeData } = Astro.props;
+const skills = resumeData.skills;
 ---
 <Section title="Skill">
   <p class="font-bold">

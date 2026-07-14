@@ -1,13 +1,12 @@
 ---
 import '@styles/tailwind.css';
-import {getEntry} from "astro:content";
 
-const resumeData =  await getEntry('resume', 'index');
-const contacts = resumeData.data.you.contacts;
+const { data: resumeData } = Astro.props;
+const contacts = resumeData.you.contacts;
 ---
 <div class=`flex flex-col`>
     {
-        contacts?.map(contact => {
+        contacts?.map((contact: any) => {
            return (
                <div class="flex">
                  <a href=`mailto:${contact.value}`>{contact.value}</a>

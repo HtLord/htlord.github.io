@@ -1,4 +1,6 @@
 ---
+const { id } = Astro.props;
+const href = id ? `/resume/printable/${id}` : `/resume/printable`;
 ---
 <div
     class="
@@ -11,7 +13,7 @@
     "
 >
   <a target="_blank"
-     href="/resume/printable"
+     href={href}
   >
       Print!
   </a>

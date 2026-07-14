@@ -1,18 +1,23 @@
 ---
 import '@styles/tailwind.css';
+import { getEntry } from "astro:content";
 import Profile from "../components/resume/group/Profile.astro";
 import Experience from "../components/resume/Experience.astro";
 import You from "../components/resume/You.astro";
 import Summary from "../components/resume/Summary.astro";
 import Education from "../components/resume/Education.astro";
+
+const { id = 'index' } = Astro.props;
+const resume = await getEntry('resume', id);
+const data = resume.data;
 ---
 <div class=`
   flex flex-col
   `
 >
-  <You/>
-  <Summary/>
-  <Profile />
-  <Experience />
-  <Education />
+  <You data={data}/>
+  <Summary data={data}/>
+  <Profile data={data} />
+  <Experience data={data} />
+  <Education data={data} />
 </div>
