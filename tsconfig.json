@@ -16,4 +16,11 @@
       "@libs/*": ["libs/*"]
     }
   },
+  // supabase/functions/** are Deno Edge Functions (a separate runtime with
+  // its own globals — `Deno`, `npm:`/`jsr:` specifiers — and its own
+  // typechecking via `deno check`/the Deno LSP). They aren't part of this
+  // Astro/Node project and were breaking `astro check` (and therefore
+  // `npm run build`, which runs `astro check && astro build`) for everyone,
+  // not just this change — see the digital-twin homepage task (T10).
+  "exclude": ["supabase/**"]
 }

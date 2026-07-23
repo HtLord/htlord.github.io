@@ -1,0 +1,166 @@
+/**
+ * Design tokens — "a person as a well-instrumented system"
+ * ---------------------------------------------------------
+ * Two signal colours carry meaning across the whole UI:
+ *
+ *   --accent  (yellow)     = the TWIN    — its cited facts, primary action, live status
+ *   --accent2 (steel blue) = the VISITOR — their message bubbles, chips, input
+ *
+ * `--twin` / `--visitor` below are semantic aliases for `--accent` / `--accent2`.
+ * Prefer the semantic names at call sites so the metaphor stays legible in
+ * component code (e.g. `color: var(--twin-ink)` reads better than `--accent-ink`).
+ *
+ * Type roles dramatize the same split:
+ *   --font-serif = the twin's voice   (prose, cited facts)
+ *   --font-mono  = system instrumentation (labels, metadata, provenance)
+ *   --font-sans  = the visitor's voice (their own input)
+ *
+ * Theming: values are defined once for light (`:root`) and once for dark
+ * (`@media (prefers-color-scheme: dark)`), then restated as `:root[data-theme]`
+ * overrides so a manual theme toggle can force either theme regardless of the
+ * OS preference. `--twin`/`--visitor` (and the other semantic aliases) are
+ * declared only once, as `var(--accent...)` references — CSS custom
+ * properties resolve lazily at used-value time, so they automatically track
+ * whichever theme block is active without needing to be redeclared per theme.
+ */
+
+:root {
+  /* ---- Light theme (default) ---- */
+  --ground: #f5f7f8;
+  --surface: #ffffff;
+  --surface-2: #eaeef1;
+  --ink: #393b3f;
+  --muted: #63676e;
+  --faint: #8a8f97;
+  --line: #dee2e6;
+  --line-strong: #c6ccd2;
+
+  /* accent = the twin (yellow) */
+  --accent: #f4ce14;
+  --accent-ink: #6f5d00;
+  --accent-tint: rgba(244, 206, 20, .22);
+  --accent-line: rgba(244, 206, 20, .75);
+
+  /* accent2 = the visitor (steel blue) */
+  --accent2: #35578c;
+  --accent2-ink: #2c4a79;
+  --accent2-tint: rgba(53, 87, 140, .12);
+  --accent2-line: rgba(53, 87, 140, .44);
+
+  /* Text colour for content sitting directly on top of --accent (buttons, etc). */
+  --btn-ink: #2a2b2e;
+
+  /* ---- Semantic aliases: yellow = twin, steel blue = visitor ---- */
+  --twin: var(--accent);
+  --twin-ink: var(--accent-ink);
+  --twin-tint: var(--accent-tint);
+  --twin-line: var(--accent-line);
+
+  --visitor: var(--accent2);
+  --visitor-ink: var(--accent2-ink);
+  --visitor-tint: var(--accent2-tint);
+  --visitor-line: var(--accent2-line);
+
+  /* ---- Type roles ---- */
+  /* The twin's prose. Georgia stack for now — swap in a real serif webfont
+     as a follow-up task (see design-system component work). */
+  --font-serif: Georgia, 'Times New Roman', Times, serif;
+  /* System instrumentation: labels, metadata, provenance. */
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+  /* The visitor's input. */
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  /* ---- Spacing scale ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+
+  /* ---- Radius scale ---- */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-full: 999px;
+}
+
+/* ---- Dark theme: OS preference ---- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ground: #25272b;
+    --surface: #2f3237;
+    --surface-2: #383b41;
+    --ink: #f1f3f5;
+    --muted: #a7acb3;
+    --faint: #787d85;
+    --line: #3b3e44;
+    --line-strong: #4c5057;
+
+    --accent: #f6d42a;
+    --accent-ink: #f5d64b;
+    --accent-tint: rgba(246, 212, 42, .15);
+    --accent-line: rgba(246, 212, 42, .70);
+
+    --accent2: #7fa8d6;
+    --accent2-ink: #9fbfe4;
+    --accent2-tint: rgba(127, 168, 214, .16);
+    --accent2-line: rgba(127, 168, 214, .45);
+
+    --btn-ink: #2a2b2e;
+  }
+}
+
+/* ---- Dark theme: explicit override (theme toggle set to "dark") ----
+   Wins over the OS preference in either direction because it's a higher-
+   specificity attribute selector on :root. */
+:root[data-theme='dark'] {
+  --ground: #25272b;
+  --surface: #2f3237;
+  --surface-2: #383b41;
+  --ink: #f1f3f5;
+  --muted: #a7acb3;
+  --faint: #787d85;
+  --line: #3b3e44;
+  --line-strong: #4c5057;
+
+  --accent: #f6d42a;
+  --accent-ink: #f5d64b;
+  --accent-tint: rgba(246, 212, 42, .15);
+  --accent-line: rgba(246, 212, 42, .70);
+
+  --accent2: #7fa8d6;
+  --accent2-ink: #9fbfe4;
+  --accent2-tint: rgba(127, 168, 214, .16);
+  --accent2-line: rgba(127, 168, 214, .45);
+
+  --btn-ink: #2a2b2e;
+}
+
+/* ---- Light theme: explicit override (theme toggle set to "light") ----
+   Restates the default :root values so the toggle can force light mode
+   even when the OS preference is dark. */
+:root[data-theme='light'] {
+  --ground: #f5f7f8;
+  --surface: #ffffff;
+  --surface-2: #eaeef1;
+  --ink: #393b3f;
+  --muted: #63676e;
+  --faint: #8a8f97;
+  --line: #dee2e6;
+  --line-strong: #c6ccd2;
+
+  --accent: #f4ce14;
+  --accent-ink: #6f5d00;
+  --accent-tint: rgba(244, 206, 20, .22);
+  --accent-line: rgba(244, 206, 20, .75);
+
+  --accent2: #35578c;
+  --accent2-ink: #2c4a79;
+  --accent2-tint: rgba(53, 87, 140, .12);
+  --accent2-line: rgba(53, 87, 140, .44);
+
+  --btn-ink: #2a2b2e;
+}

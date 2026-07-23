@@ -1,0 +1,32 @@
+---
+/**
+ * CitedFact — inline highlight for a corpus-cited word/number inside the
+ * twin's prose. Whole-word coverage via background-color (not a
+ * half-height underline): a solid --twin (yellow) chip around the text,
+ * with box-decoration-break so it stays whole across line wraps.
+ */
+interface Props {
+  source?: string;
+}
+
+const { source } = Astro.props;
+const title = source ? `corpus: ${source}` : undefined;
+---
+
+<mark class="cite" title={title}><slot /></mark>
+
+<style>
+  .cite {
+    font-family: inherit;
+    font-size: inherit;
+    color: var(--btn-ink);
+    background: var(--twin);
+    border-radius: var(--radius-sm);
+    padding: 0.06em 0.2em;
+    margin: 0 -0.04em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    font-variant-numeric: tabular-nums;
+    cursor: help;
+  }
+</style>

@@ -1,0 +1,59 @@
+---
+/**
+ * Button — primary (yellow/twin), secondary (outline), ghost. Renders an
+ * <a> when `href` is passed, a <button> otherwise. Mono type, matching the
+ * "system instrumentation" role used for actions/labels across the kit.
+ */
+interface Props {
+  variant?: 'primary' | 'secondary' | 'ghost';
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  class?: string;
+}
+
+const { variant = 'primary', href, type = 'button', class: className } = Astro.props;
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag class:list={['btn', variant, className]} href={href} type={href ? undefined : type}>
+  <slot />
+</Tag>
+
+<style>
+  .btn {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    padding: 8px 13px;
+    border: 1px solid transparent;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn.primary {
+    background: var(--twin);
+    color: var(--btn-ink);
+  }
+  .btn.primary:hover {
+    filter: brightness(1.04);
+  }
+  .btn.secondary {
+    background: transparent;
+    color: var(--ink);
+    border-color: var(--line-strong);
+  }
+  .btn.secondary:hover {
+    background: var(--surface-2);
+  }
+  .btn.ghost {
+    background: transparent;
+    color: var(--muted);
+    border-color: transparent;
+  }
+  .btn.ghost:hover {
+    color: var(--ink);
+  }
+</style>

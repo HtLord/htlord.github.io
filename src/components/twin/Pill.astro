@@ -1,0 +1,57 @@
+---
+/**
+ * Pill — small status/provenance badges: cited (yellow/twin), status
+ * (online, with a live dot), draft (neutral). Pass slotted content to
+ * override the default label for any variant.
+ */
+interface Props {
+  variant?: 'cited' | 'status' | 'draft';
+}
+
+const { variant = 'status' } = Astro.props;
+---
+
+<span class:list={['pill', variant]}>
+  {variant === 'status' && <span class="dot"></span>}
+  <slot>
+    {variant === 'cited' && '◆ cited'}
+    {variant === 'status' && 'online'}
+    {variant === 'draft' && 'draft'}
+  </slot>
+</span>
+
+<style>
+  .pill {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 4px 9px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--line-strong);
+    color: var(--muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+  }
+  .pill.status {
+    background: var(--surface);
+    border-color: var(--line);
+  }
+  .pill.cited {
+    color: var(--twin-ink);
+    border-color: var(--twin-line);
+    background: var(--twin-tint);
+  }
+  .pill.draft {
+    color: var(--muted);
+    border-color: var(--line-strong);
+    background: transparent;
+  }
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--twin);
+    flex: none;
+  }
+</style>

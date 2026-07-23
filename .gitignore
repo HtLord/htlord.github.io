@@ -23,8 +23,18 @@ pnpm-debug.log*
 # IDE
 .idea/
 
+# local agent / MCP config + scratch worktrees (never commit)
+.mcp.json
+.claude/worktrees/
+
+# backend (Supabase Edge Function / system prompt / scope defenses) lives in the
+# PRIVATE ht-digital-twin repo — must never be committed to this PUBLIC repo
+supabase/
+
 # --- private job-search material (must stay off the public site) ---
 job-tracker.csv
+# corpus inventory YAML + the indexer that seeds it now live in the private
+# ht-digital-twin repo; the whole src/data/ dir stays out of this public repo.
 src/data/
 src/pages/resume/inventory.astro
 src/pages/job-tracker/

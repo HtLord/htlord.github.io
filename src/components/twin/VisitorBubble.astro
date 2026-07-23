@@ -1,0 +1,50 @@
+---
+/**
+ * VisitorBubble — the visitor's own words: sans, steel (--visitor) tinted,
+ * right-aligned. Works inside a flex/column thread (align-self) or on its
+ * own (width: fit-content + margin-left: auto still pushes it right).
+ */
+interface Props {
+  label?: string;
+}
+
+const { label = 'visitor' } = Astro.props;
+---
+
+<div class="msg ask">
+  <div class="who">{label}</div>
+  <div class="bubble"><slot /></div>
+</div>
+
+<style>
+  .msg.ask {
+    align-self: flex-end;
+    max-width: 80%;
+    width: fit-content;
+    margin-left: auto;
+  }
+  .who {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--visitor-ink);
+    margin-bottom: 6px;
+    text-align: right;
+  }
+  .bubble {
+    font-family: var(--font-sans);
+    font-size: 15.5px;
+    color: var(--ink);
+    background: var(--visitor-tint);
+    border: 1px solid var(--visitor-line);
+    padding: 11px 15px;
+    border-radius: var(--radius-lg) var(--radius-lg) var(--radius-sm) var(--radius-lg);
+  }
+
+  @media (max-width: 560px) {
+    .msg.ask {
+      max-width: 92%;
+    }
+  }
+</style>

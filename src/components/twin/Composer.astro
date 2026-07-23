@@ -1,0 +1,75 @@
+---
+/**
+ * Composer — the text input + primary "ask" button. Sans input (the
+ * visitor's voice), mono/yellow send button (the twin's primary action).
+ * Static markup only — wiring the submit handler is the homepage's job.
+ */
+interface Props {
+  placeholder?: string;
+  buttonLabel?: string;
+  name?: string;
+  id?: string;
+}
+
+const {
+  placeholder = 'Ask about the work, the thinking, the person…',
+  buttonLabel = 'ask ↵',
+  name = 'q',
+  id = 'composer-input',
+} = Astro.props;
+---
+
+<form class="composer">
+  <input type="text" name={name} id={id} placeholder={placeholder} aria-label="Ask the digital twin" autocomplete="off" />
+  <button type="submit" class="send">{buttonLabel}</button>
+</form>
+
+<style>
+  .composer {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-lg);
+    padding: var(--space-2) var(--space-2) var(--space-2) var(--space-4);
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.06),
+      0 14px 34px -22px rgba(0, 0, 0, 0.34);
+  }
+  .composer:focus-within {
+    border-color: var(--visitor-line);
+  }
+  .composer input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    background: transparent;
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 15.5px;
+    padding: var(--space-2) 0;
+    outline: none;
+  }
+  .composer input::placeholder {
+    color: var(--faint);
+  }
+  .send {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--btn-ink);
+    background: var(--twin);
+    border: 0;
+    border-radius: var(--radius-md);
+    padding: 10px var(--space-4);
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    white-space: nowrap;
+  }
+  .send:hover {
+    filter: brightness(1.04);
+  }
+</style>

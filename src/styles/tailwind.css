@@ -1,4 +1,6 @@
 /* The integration's default injected base.css file */
+@import './tokens.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

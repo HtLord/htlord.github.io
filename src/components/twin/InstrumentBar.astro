@@ -1,0 +1,155 @@
+---
+/**
+ * InstrumentBar — the site's top nav / "instrument panel".
+ *
+ * Carries the twin/visitor colour split: the live-status dot is a
+ * `--twin` (yellow) pulse — it's the twin's own live signal. Name is set
+ * in the twin's voice (serif) beside a mono system subtitle; nav links and
+ * the status pill are mono, matching the "system instrumentation" type role.
+ */
+interface NavLink {
+  href: string;
+  label: string;
+}
+
+interface Props {
+  nameZh?: string;
+  nameEn?: string;
+  status?: string;
+  live?: boolean;
+  links?: NavLink[];
+  current?: string;
+}
+
+const {
+  nameZh = '黃偉程',
+  nameEn = 'htlord · digital twin',
+  status = 'online',
+  live = true,
+  links = [
+    { href: '/', label: 'Twin' },
+    { href: '/about', label: 'About' },
+    { href: '/blog', label: 'Writing' },
+    { href: 'https://github.com/htlord', label: 'GitHub' },
+  ],
+  current = '/',
+} = Astro.props;
+---
+
+<header class="bar">
+  <div class="brand">
+    <span class="zh">{nameZh}</span>
+    <span class="en">{nameEn}</span>
+  </div>
+  <span class="status">
+    <span class:list={['dot', { live }]}></span>
+    {status}
+  </span>
+  <nav>
+    {links.map((link) => (
+      <a href={link.href} class:list={{ on: link.href === current }}>{link.label}</a>
+    ))}
+  </nav>
+</header>
+
+<style>
+  .bar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-3) clamp(var(--space-4), 4vw, var(--space-8));
+    background: color-mix(in srgb, var(--ground) 84%, transparent);
+    backdrop-filter: saturate(160%) blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .brand {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    min-width: 0;
+  }
+  .brand .zh {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+  }
+  .brand .en {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--faint);
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--muted);
+    padding: 4px 9px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-full);
+    background: var(--surface);
+    white-space: nowrap;
+  }
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--twin);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .dot.live {
+      animation: instrument-pulse 2.6s ease-out infinite;
+    }
+  }
+  @keyframes instrument-pulse {
+    0% {
+      box-shadow: 0 0 0 0 var(--twin-tint);
+    }
+    70% {
+      box-shadow: 0 0 0 6px transparent;
+    }
+    100% {
+      box-shadow: 0 0 0 0 transparent;
+    }
+  }
+
+  nav {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+  nav a {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    text-decoration: none;
+    color: var(--muted);
+    padding: 6px 10px;
+    border-radius: var(--radius-sm);
+    letter-spacing: 0.01em;
+  }
+  nav a:hover {
+    color: var(--ink);
+    background: var(--surface-2);
+  }
+  nav a.on {
+    color: var(--twin-ink);
+    background: var(--twin-tint);
+  }
+
+  @media (max-width: 560px) {
+    nav a:not(.on) {
+      display: none;
+    }
+  }
+</style>

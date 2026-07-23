@@ -1,0 +1,116 @@
+---
+/**
+ * TwinBubble — the twin speaking: serif prose on a plain surface, with an
+ * optional provenance line underneath (the "◆ cited" tag + source ids).
+ *
+ * Pass cited facts inside the default slot wrapped in <CitedFact source="…">
+ * so the yellow (twin) highlight and this bubble's provenance line agree
+ * about what's actually sourced.
+ */
+interface Props {
+  label?: string;
+  live?: boolean;
+  sources?: string[];
+}
+
+const { label = 'digital twin', live = false, sources = [] } = Astro.props;
+const hasProvenance = sources.length > 0 || Astro.slots.has('provenance');
+---
+
+<div class="msg twin">
+  <div class="who">
+    <span class:list={['dot', { live }]}></span>
+    {label}
+  </div>
+  <div class="bubble">
+    <div class="prose"><slot /></div>
+    {hasProvenance && (
+      <div class="prov">
+        <slot name="provenance">
+          <span class="tag">◆ cited</span>
+          <span class="src">{sources.join(' · ')}</span>
+        </slot>
+      </div>
+    )}
+  </div>
+</div>
+
+<style>
+  .msg {
+    max-width: 100%;
+  }
+  .who {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-bottom: 6px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--twin);
+    flex: none;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .dot.live {
+      animation: twin-pulse 2.6s ease-out infinite;
+    }
+  }
+  @keyframes twin-pulse {
+    0% {
+      box-shadow: 0 0 0 0 var(--twin-tint);
+    }
+    70% {
+      box-shadow: 0 0 0 6px transparent;
+    }
+    100% {
+      box-shadow: 0 0 0 0 transparent;
+    }
+  }
+
+  .bubble {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: var(--space-4) 19px;
+    border-radius: var(--radius-lg) var(--radius-lg) var(--radius-lg) var(--radius-sm);
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.06),
+      0 14px 34px -22px rgba(0, 0, 0, 0.34);
+  }
+  .prose {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    line-height: 1.62;
+    color: var(--ink);
+  }
+
+  .prov {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+    margin-top: 11px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--faint);
+  }
+  .prov .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid var(--twin-line);
+    color: var(--twin-ink);
+    background: var(--twin-tint);
+    border-radius: var(--radius-sm);
+    padding: 2px 7px;
+  }
+  .prov .src {
+    color: var(--muted);
+  }
+</style>

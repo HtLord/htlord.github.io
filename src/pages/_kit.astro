@@ -1,0 +1,185 @@
+---
+/**
+ * _kit — throwaway component-library preview, NOT the homepage.
+ *
+ * Underscore-prefixed pages are excluded from Astro's routing (dev and
+ * build both skip them), so this never ships as a real route. To preview
+ * it locally, temporarily rename this file to `kit.astro`, run
+ * `npm run dev`, visit /kit, then rename it back before committing.
+ */
+import '@styles/tokens.css';
+import InstrumentBar from '@components/twin/InstrumentBar.astro';
+import TwinBubble from '@components/twin/TwinBubble.astro';
+import VisitorBubble from '@components/twin/VisitorBubble.astro';
+import StarterChip from '@components/twin/StarterChip.astro';
+import Composer from '@components/twin/Composer.astro';
+import Button from '@components/twin/Button.astro';
+import Pill from '@components/twin/Pill.astro';
+import CitedFact from '@components/twin/CitedFact.astro';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>component kit — digital twin</title>
+  </head>
+  <body>
+    <button id="themeBtn" class="theme-btn" type="button">◐ toggle theme</button>
+
+    <InstrumentBar current="/" />
+
+    <main class="stage">
+      <h1 class="section-title">Thread</h1>
+      <div class="thread">
+        <VisitorBubble label="interviewer">What did you actually do at Dentall?</VisitorBubble>
+        <TwinBubble sources={['dentall-perf-10x', 'dentall-throughput']}>
+          Hi — at Dentall I owned backend performance and the healthcare compliance layer. The
+          headline: a core clinical query dropped from
+          <CitedFact source="dentall-perf-10x">~5s to ~0.5s</CitedFact>, roughly a 10× cut. After
+          the fix the service held <CitedFact source="dentall-throughput">40–60 RPS</CitedFact>
+          steadily.
+        </TwinBubble>
+      </div>
+
+      <h2 class="section-title">Starter chips</h2>
+      <div class="row">
+        <StarterChip selected>What did you do at Dentall?</StarterChip>
+        <StarterChip>What's not on your résumé?</StarterChip>
+        <StarterChip>Did you lead a 6-person team?</StarterChip>
+        <StarterChip>用中文聊技術債</StarterChip>
+      </div>
+
+      <h2 class="section-title">Composer</h2>
+      <Composer />
+
+      <h2 class="section-title">Buttons</h2>
+      <div class="row">
+        <Button variant="primary">ask ↵</Button>
+        <Button variant="secondary">Résumé</Button>
+        <Button variant="ghost">skip</Button>
+      </div>
+
+      <h2 class="section-title">Provenance &amp; status pills</h2>
+      <div class="row">
+        <Pill variant="status" />
+        <Pill variant="cited" />
+        <Pill variant="draft" />
+      </div>
+
+      <h2 class="section-title">Cited-fact highlight (whole word, not underline)</h2>
+      <p class="prose-sample">
+        Test coverage moved from <CitedFact source="dentall-coverage">~50% to ~80%</CitedFact> over
+        the project, and the team held a steady <CitedFact source="dentall-throughput">40–60 RPS</CitedFact>.
+      </p>
+
+      <h2 class="section-title">Type roles</h2>
+      <div class="typespec">
+        <span class="lbl">twin / serif</span>
+        <span class="demo-serif">The conversation is the portfolio.</span>
+      </div>
+      <div class="typespec">
+        <span class="lbl">system / mono</span>
+        <span class="demo-mono">cited · dentall-perf-10x · status:verified · 40–60 RPS</span>
+      </div>
+      <div class="typespec">
+        <span class="lbl">visitor / sans</span>
+        <span class="demo-sans">What's something your résumé doesn't show?</span>
+      </div>
+    </main>
+
+    <style>
+      body {
+        margin: 0;
+        background: var(--ground);
+        color: var(--ink);
+        font-family: var(--font-sans);
+        line-height: 1.6;
+      }
+      .theme-btn {
+        position: fixed;
+        top: 10px;
+        right: 12px;
+        z-index: 30;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--muted);
+        cursor: pointer;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        padding: 6px 9px;
+      }
+      .stage {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: var(--space-7) var(--space-4) var(--space-8);
+      }
+      .section-title {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--twin-ink);
+        margin: var(--space-7) 0 var(--space-3);
+      }
+      .thread {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-5);
+      }
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+        align-items: center;
+      }
+      .prose-sample {
+        font-family: var(--font-serif);
+        font-size: 18px;
+        line-height: 1.62;
+        max-width: 60ch;
+      }
+      .typespec {
+        display: grid;
+        grid-template-columns: 140px 1fr;
+        gap: var(--space-4);
+        align-items: baseline;
+        padding-bottom: var(--space-3);
+        border-bottom: 1px solid var(--line);
+        margin-bottom: var(--space-3);
+      }
+      .typespec .lbl {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--faint);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .demo-serif {
+        font-family: var(--font-serif);
+        font-size: 22px;
+      }
+      .demo-mono {
+        font-family: var(--font-mono);
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .demo-sans {
+        font-family: var(--font-sans);
+        font-size: 15px;
+      }
+    </style>
+
+    <script>
+      const btn = document.getElementById('themeBtn');
+      const root = document.documentElement;
+      btn?.addEventListener('click', () => {
+        const cur =
+          root.getAttribute('data-theme') ||
+          (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        root.setAttribute('data-theme', cur === 'dark' ? 'light' : 'dark');
+      });
+    </script>
+  </body>
+</html>
