@@ -142,21 +142,38 @@ const STARTER_CHIPS = [
     <div id="cite-cid-harvest" hidden aria-hidden="true"><CitedFact source="harvest">x</CitedFact></div>
 
     <style>
+      /* Fixed-viewport app shell: html/body pin to the dynamic viewport
+         height and body becomes a flex column (InstrumentBar, then
+         main.stage). Nothing here scrolls except #thread below — that's
+         the one region allowed to grow past its flex-basis. */
+      html,
+      body {
+        height: 100dvh;
+      }
+
       body {
         margin: 0;
+        overflow: hidden;
         background: var(--ground);
         color: var(--ink);
         font-family: var(--font-sans);
         line-height: 1.6;
+        display: flex;
+        flex-direction: column;
       }
 
       .stage {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+        min-height: 0;
         max-width: 760px;
         margin: 0 auto;
         padding: 0 clamp(var(--space-4), 4vw, var(--space-6)) var(--space-8);
       }
 
       .hero {
+        flex: none;
         padding: var(--space-7) 0 var(--space-6);
       }
       .hero h1 {
@@ -179,9 +196,18 @@ const STARTER_CHIPS = [
         flex-direction: column;
         gap: var(--space-5);
         margin-bottom: var(--space-6);
+        /* The sole scrolling region of the shell — grows to fill the
+           leftover space between hero and chips/composer, and scrolls its
+           own overflow instead of the page. min-height:0 overrides the
+           flex default (min-height:auto) that would otherwise let this
+           item's content push .stage/body taller than the viewport. */
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
       }
 
       .chips {
+        flex: none;
         display: flex;
         flex-wrap: wrap;
         gap: var(--space-2);
@@ -199,8 +225,10 @@ const STARTER_CHIPS = [
       }
 
       .composer-wrap {
-        position: sticky;
-        bottom: 0;
+        /* Naturally the last flex child of .stage now — the fixed shell
+           means it's never below the fold, so it no longer needs to stick
+           itself to the bottom of a scrolling page. */
+        flex: none;
         padding: var(--space-3) 0 var(--space-2);
         background: linear-gradient(to top, var(--ground) 65%, transparent);
         transition: opacity 0.15s ease;
@@ -218,6 +246,7 @@ const STARTER_CHIPS = [
       }
 
       .more-link {
+        flex: none;
         font-family: var(--font-mono);
         font-size: 12px;
         color: var(--faint);
@@ -333,6 +362,24 @@ const STARTER_CHIPS = [
       @media (max-width: 560px) {
         .hero h1 {
           font-size: 26px;
+        }
+      }
+
+      /* Fixed-viewport shell has no page scroll to fall back on, so on
+         short viewports (landscape phones, small laptop windows with
+         devtools open, etc.) the hero economizes on its own height —
+         hides the subline and tightens padding/type — so #thread keeps a
+         usable amount of room above the composer. */
+      @media (max-height: 640px) {
+        .hero {
+          padding: var(--space-4) 0 var(--space-3);
+        }
+        .hero .subline {
+          display: none;
+        }
+        .hero h1 {
+          font-size: clamp(20px, 5vw, 26px);
+          margin: 0;
         }
       }
     </style>
