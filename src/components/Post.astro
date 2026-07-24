@@ -1,12 +1,138 @@
 ---
-import FormattedDate from "./FormattedDate.astro";
+/**
+ * Post — a post card for the blog index (src/pages/blog/index.astro).
+ *
+ * Twin design system: serif title, mono date/tags ("system instrumentation"),
+ * a surface/line card that lifts and picks up the twin (yellow) accent on
+ * hover — same signal the InstrumentBar uses to mark the /blog nav link.
+ *
+ * `featured` renders the first-of-list treatment (bigger image + title),
+ * replacing the old `imgW`/`imgH` props.
+ */
+import type { CollectionEntry } from 'astro:content';
+import FormattedDate from './FormattedDate.astro';
 
-const { post, imgW, imgH } = Astro.props
+interface Props {
+  post: CollectionEntry<'blog'>;
+  featured?: boolean;
+}
+
+const { post, featured = false } = Astro.props;
+const imgW = featured ? 960 : 480;
+const imgH = featured ? 480 : 260;
 ---
-<a href={`/blog/${post.slug}/`}>
-    <img width={imgW || 720} height={ imgH || 360} src={post.data.heroImage} alt="" />
-    <p class="text-gray">
-        <FormattedDate date={post.data.pubDate} />
+
+<a class:list={['post-card', { featured }]} href={`/blog/${post.slug}/`}>
+  <div class="media">
+    <img width={imgW} height={imgH} src={post.data.heroImage} alt="" loading="lazy" />
+  </div>
+  <div class="body">
+    <p class="date">
+      <FormattedDate date={post.data.pubDate} />
     </p>
-    <h4 class="title">{post.data.title}</h4>
+    <h3 class="title">{post.data.title}</h3>
+    {
+      post.data.tags && post.data.tags.length > 0 && (
+        <ul class="tags">
+          {post.data.tags.map((tag) => (
+            <li>{tag}</li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
 </a>
+
+<style>
+  .post-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition:
+      transform 0.15s ease,
+      border-color 0.15s ease,
+      box-shadow 0.15s ease;
+  }
+  .post-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--twin-line);
+    box-shadow: 0 10px 26px -14px rgba(0, 0, 0, 0.28);
+  }
+
+  .media {
+    aspect-ratio: 2 / 1;
+    overflow: hidden;
+    background: var(--surface-2);
+  }
+  .post-card.featured .media {
+    aspect-ratio: 2.2 / 1;
+  }
+  .media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+  }
+  .post-card:hover .media img {
+    transform: scale(1.03);
+  }
+
+  .body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-4) var(--space-5) var(--space-5);
+  }
+
+  .date {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+
+  .title {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: 19px;
+    line-height: 1.32;
+    color: var(--ink);
+    transition: color 0.15s ease;
+  }
+  .post-card.featured .title {
+    font-size: clamp(24px, 3.2vw, 32px);
+    line-height: 1.2;
+  }
+  .post-card:hover .title {
+    color: var(--twin-ink);
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    list-style: none;
+    margin: var(--space-1) 0 0;
+    padding: 0;
+  }
+  .tags li {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-full);
+    padding: 2px 8px;
+  }
+</style>

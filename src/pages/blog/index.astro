@@ -1,102 +1,89 @@
 ---
-import BaseHead from '@components/BaseHead.astro';
-import Header from '../../components/Navigation.astro';
-import Footer from '@components/Footer.astro';
+/**
+ * blog/index.astro — post listing, in the digital-twin site's shell.
+ *
+ * Uses the shared TwinLayout (InstrumentBar + centred `.stage` + content-scoped
+ * scroll) so /blog reads as part of the twin site. Content/behaviour is
+ * unchanged: still the 5 most recent posts, featured-first + grid layout.
+ */
+import TwinLayout from '../../layouts/TwinLayout.astro';
 import { getCollection } from 'astro:content';
-import {SITE} from "../../consts";
-import Post from "../../components/Post.astro";
+import { SITE } from '../../consts';
+import Post from '../../components/Post.astro';
 
+const recentPosts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, SITE.pageSize);
 
-const recent_5_posts=
-	(await getCollection('blog'))
-		.sort((a, b) =>
-			b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-		.slice(0, 5);
+const [featuredPost, ...otherPosts] = recentPosts;
+
+const description = `${SITE.description} — the ${SITE.pageSize} most recent posts.`;
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE.title} description={SITE.description} />
-		<style>
-			main {
-				width: 960px;
-			}
-			ul {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2rem;
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-			}
-			ul li {
-				width: calc(50% - 1rem);
-			}
-			ul li * {
-				text-decoration: none;
-				transition: 0.2s ease;
-			}
-			ul li:first-child {
-				width: 100%;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-			ul li:first-child img {
-				width: 100%;
-			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
-			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
-			}
-			.title {
-				margin: 0;
-				color: rgb(var(--black));
-				line-height: 1;
-			}
-			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
-				}
-				ul li {
-					width: 100%;
-					text-align: center;
-				}
-				ul li:first-child {
-					margin-bottom: 0;
-				}
-				ul li:first-child .title {
-					font-size: 1.563em;
-				}
-			}
-		</style>
-	<body>
-		<Header />
-		<main>
-			<section>
-				<ul>
-					<li>
-						<Post
-							post={recent_5_posts.at(0)}
-							imgW="960"
-							imgH="480"
-						/>
-					</li>
-					{
-						recent_5_posts.slice(1).map((post) => (
-							<li>
-								<Post
-									post={post}
-								/>
-							</li>
-						))
-					}
-				</ul>
-			</section>
-		</main>
-		<Footer />
-	</body>
-</html>
+<TwinLayout title="Writing · 黃偉程 · htlord" description={description} current="/blog" maxWidth="1040px">
+  <section class="hero">
+    <h1>Writing</h1>
+    <p class="subline">Notes on backend systems, healthcare compliance, and whatever I got stuck on this week.</p>
+  </section>
+
+  <ul class="posts">
+    {
+      featuredPost && (
+        <li class="featured-item">
+          <Post post={featuredPost} featured />
+        </li>
+      )
+    }
+    {
+      otherPosts.map((post) => (
+        <li>
+          <Post post={post} />
+        </li>
+      ))
+    }
+  </ul>
+
+  <style>
+    .hero {
+      padding: var(--space-6) 0 var(--space-5);
+    }
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 5vw, 42px);
+      line-height: 1.15;
+      margin: 0 0 var(--space-3);
+      color: var(--ink);
+    }
+    .hero .subline {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 58ch;
+      margin: 0;
+    }
+
+    .posts {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-5);
+      list-style: none;
+      margin: 0 0 var(--space-8);
+      padding: 0;
+    }
+    .posts li {
+      display: flex;
+    }
+    .posts .featured-item {
+      grid-column: 1 / -1;
+    }
+
+    @media (max-width: 640px) {
+      .hero h1 {
+        font-size: 26px;
+      }
+      .posts {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</TwinLayout>

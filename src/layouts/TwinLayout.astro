@@ -107,9 +107,18 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       }
     </style>
 
-    <!-- Print: hide the sticky top bar (a component with its own scoped styles,
-         so it has to be reached globally). -->
+    <!-- Global resets for pages on this shell. box-sizing is load-bearing: the
+         `.stage` (width:100% + padding) overflows under the default content-box
+         model, and pages here can't rely on Tailwind's preflight being imported
+         (only ones that render résumé/blog components pull it in). -->
     <style is:global>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      /* Print: hide the sticky top bar (a component with its own scoped
+         styles, so it has to be reached globally). */
       @media print {
         header.bar {
           display: none !important;
