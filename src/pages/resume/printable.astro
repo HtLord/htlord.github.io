@@ -4,6 +4,17 @@ import Resume from "../../layouts/Resume.astro";
 ---
 <html lang="en">
     <head>
+        <!--
+          This page bypasses BaseHead.astro (it's a print-only render
+          target, not a normal page), so charset isn't set anywhere else.
+          Without it the browser falls back to guessing an encoding, which
+          mangles the non-ASCII characters in the résumé text (em dashes,
+          arrows) into mojibake — verified via curl: the server sends valid
+          UTF-8 bytes but no charset, in the header or the HTML.
+        -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Résumé — printable</title>
     </head>
     <body>
         <Resume/>

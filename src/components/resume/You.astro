@@ -19,8 +19,37 @@ const { data: resumeData } = Astro.props;
       print:col-span-8 print:justify-self-end
       "
   >
-    <h3>{ resumeData.you.name }</h3>
-    <h4 class="text-gray">{ resumeData.you.title }</h4>
+    <h3 class="name">{ resumeData.you.name }</h3>
+    <h4 class="title">{ resumeData.you.title }</h4>
   </div>
   <Contacts data={resumeData} />
 </div>
+
+<style>
+  .name {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--ink);
+    margin: 0;
+    letter-spacing: 0.005em;
+  }
+  .title {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    margin: 0.35em 0 0;
+  }
+
+  @media print {
+    .name {
+      color: #000;
+    }
+    .title {
+      color: #333;
+    }
+  }
+</style>

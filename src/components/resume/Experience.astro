@@ -6,12 +6,76 @@ const { data: resumeData } = Astro.props;
 const experiences = resumeData.experiences;
 ---
 <style>
-@media print {
-  li {
-    page-break-inside: avoid;
-    break-inside: avoid;
+  .role {
+    font-family: var(--font-serif);
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0;
+    line-height: 1.3;
   }
-}
+  .meta {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+  }
+  .meta .company {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .meta .period {
+    color: var(--faint);
+    font-variant-numeric: tabular-nums;
+  }
+  .head {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: var(--space-2);
+  }
+  .proj-name {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .proj-stack {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--faint);
+  }
+  ul.achievements {
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  ul.achievements ul {
+    color: var(--muted);
+    font-size: 14px;
+  }
+  ul.achievements li::marker {
+    color: var(--twin-ink);
+  }
+
+  @media print {
+    .head {
+      border-bottom-color: #999;
+    }
+    .role,
+    .meta .company,
+    .proj-name,
+    ul.achievements {
+      color: #000;
+    }
+    .meta .period,
+    .proj-stack,
+    ul.achievements ul {
+      color: #333;
+    }
+    ul.achievements li::marker {
+      color: #000;
+    }
+    li {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+  }
 </style>
 <div class="px-4">
     {
@@ -19,26 +83,26 @@ const experiences = resumeData.experiences;
             return (
                 <div class="mb-8">
                   <div class="
+                    head
                     mb-2
                     grid grid-cols-12
-                    border-b-2 border-black border-dotted
                   ">
-                    <h3 class="col-span-8">
+                    <h3 class="role col-span-8">
                         {exp.title}
                     </h3>
-                    <div class="col-span-4 grid grid-rows-2">
-                      <div>{exp.name}</div>
-                      <div>{exp.period}</div>
+                    <div class="meta col-span-4 grid grid-rows-2">
+                      <div class="company">{exp.name}</div>
+                      <div class="period">{exp.period}</div>
                     </div>
                   </div>
                   <div id="achievement">
                     {exp.projects ? (
-                      <ul class="list-disc pl-8 mb-2">
+                      <ul class="achievements list-disc pl-8 mb-2">
                         {exp.projects.map((proj: any) => (
                           <li class="mb-1">
-                            <span class="font-semibold">{proj.name}</span>
+                            <span class="proj-name">{proj.name}</span>
                             {proj.stack && (
-                              <span class="text-gray-500"> - {proj.stack.join(' / ')}</span>
+                              <span class="proj-stack"> - {proj.stack.join(' / ')}</span>
                             )}
                             {proj.points ? (
                               <ul class="list-disc pl-4">
@@ -53,7 +117,7 @@ const experiences = resumeData.experiences;
                         ))}
                       </ul>
                     ) : (
-                      <ul class="list-disc pl-8 mb-2">
+                      <ul class="achievements list-disc pl-8 mb-2">
                         {exp.achievements?.map((arch: any) => (
                           <li>
                             <span class="flex">

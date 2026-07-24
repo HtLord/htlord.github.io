@@ -1,17 +1,87 @@
 ---
-import Layout from '../../layouts/BlogPost.astro';
-import {SITE} from "../../consts";
-import Resume from "../../layouts/Resume.astro";
-import PrintBtn from "../../components/resume/PrintBtn.astro";
+/**
+ * about/index.astro — the résumé, in the digital-twin site's shell.
+ *
+ * Uses the shared TwinLayout (InstrumentBar + centred `.stage` + content-scoped
+ * scroll) so /about reads as part of the twin site. The résumé *content* is
+ * unchanged — still <Resume/>, composed from src/content/resume/index.yaml.
+ */
+import TwinLayout from '../../layouts/TwinLayout.astro';
+import { SITE } from '../../consts';
+import Resume from '../../layouts/Resume.astro';
+import PrintBtn from '../../components/resume/PrintBtn.astro';
+
+const description =
+  'The résumé version of htlord — the same real work history the digital twin ' +
+  'answers from: backend engineering in healthcare SaaS, and how the work was done.';
 ---
 
-<Layout
-	title="About Me"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('2024-01-22')}
-	heroImage={SITE.aboutMeHeroImage}
-	tags={[]}
+<TwinLayout
+  title="About · 黃偉程 · htlord"
+  description={description}
+  current="/about"
+  ogType="profile"
 >
-	<PrintBtn />
-	<Resume />
-</Layout>
+  <section class="hero">
+    <img class="banner" src={SITE.aboutMeHeroImage} width="960" height="480" alt="" />
+    <h1>About</h1>
+    <p class="subline">
+      The résumé version — the same work history my digital twin answers from.
+      Prefer to just ask? <a href="/">Chat with the twin →</a>
+    </p>
+  </section>
+
+  <Resume />
+
+  <PrintBtn />
+
+  <style>
+    .hero {
+      padding: var(--space-6) 0;
+    }
+    .banner {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      margin-bottom: var(--space-5);
+    }
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 5vw, 42px);
+      line-height: 1.15;
+      margin: 0 0 var(--space-3);
+      color: var(--ink);
+    }
+    .hero .subline {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 58ch;
+      margin: 0;
+    }
+    .hero .subline a {
+      color: var(--visitor-ink);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .hero .subline a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 560px) {
+      .hero h1 {
+        font-size: 26px;
+      }
+    }
+
+    /* Printing /about directly still yields a clean résumé: drop the banner/hero
+       (the dedicated print target /resume/printable omits them already). */
+    @media print {
+      .hero {
+        display: none;
+      }
+    }
+  </style>
+</TwinLayout>

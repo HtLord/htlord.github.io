@@ -3,11 +3,29 @@ import '@styles/tailwind.css';
 
 const { value } = Astro.props
 ---
-<span class="
-     h-8 ml-4
-     font-light
-     border-b-2 border-dashed text-black
-     "
->
-        {value}
+<span class="chip">
+    {value}
 </span>
+
+<style>
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-full);
+    padding: 4px 11px;
+    line-height: 1.4;
+  }
+
+  @media print {
+    .chip {
+      color: #000;
+      background: #fff;
+      border-color: #999;
+    }
+  }
+</style>

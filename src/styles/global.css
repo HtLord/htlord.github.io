@@ -7,8 +7,15 @@
 @import './tokens.css';
 
 :root {
-	--accent: #2337ff;
-	--accent-dark: #000d8a;
+	/* Renamed from --accent/--accent-dark: that name collides with the
+	   design-system accent token in tokens.css (both unscoped `:root`
+	   blocks, same specificity) — this block, declared later, was silently
+	   winning the cascade and clobbering --accent/--twin site-wide on any
+	   page that imports global.css. Kept as --legacy-accent* so this old
+	   blog-era blue stays exactly where it's still used (blockquote border,
+	   nav underline) without blocking the twin design tokens. */
+	--legacy-accent: #2337ff;
+	--legacy-accent-dark: #000d8a;
 	--black: 15, 18, 25;
 	--gray: 96, 115, 159;
 	--gray-light: 229, 233, 240;
@@ -120,7 +127,7 @@ pre > code {
 	all: unset;
 }
 blockquote {
-	border-left: 4px solid var(--accent);
+	border-left: 4px solid var(--legacy-accent);
 	padding: 0 0 0 20px;
 	margin: 0px;
 	font-size: 1.333em;

@@ -3,8 +3,23 @@ import '@styles/tailwind.css';
 
 const { value, url } = Astro.props
 ---
-<div class="text-blue print:hidden">
+<div class="ref print:hidden">
   <a href={url} target="_blank">
     [{ value }]
   </a>
 </div>
+
+<style>
+  .ref {
+    display: inline-flex;
+  }
+  .ref a {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--visitor-ink);
+    text-decoration: none;
+  }
+  .ref a:hover {
+    text-decoration: underline;
+  }
+</style>

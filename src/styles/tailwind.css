@@ -7,8 +7,11 @@
 
 @layer base {
     :root {
-        --accent: #2337ff;
-        --accent-dark: #000d8a;
+        /* Renamed from --accent/--accent-dark — collides with the
+           design-system accent token in tokens.css. See global.css for the
+           full explanation; kept as --legacy-accent* for the same reason. */
+        --legacy-accent: #2337ff;
+        --legacy-accent-dark: #000d8a;
         --black: 15, 18, 25;
         --gray: 96, 115, 159;
         --gray-light: 229, 233, 240;
@@ -120,7 +123,7 @@
         all: unset;
     }
     blockquote {
-        border-left: 4px solid var(--accent);
+        border-left: 4px solid var(--legacy-accent);
         padding: 0 0 0 20px;
         margin: 0px;
         font-size: 1.333em;

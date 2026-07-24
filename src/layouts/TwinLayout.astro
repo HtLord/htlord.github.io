@@ -1,0 +1,118 @@
+---
+/**
+ * TwinLayout — the shared page shell for the digital-twin site.
+ *
+ * Same chrome as the homepage (index.astro): an <InstrumentBar> top bar over a
+ * centred `.stage` on a var(--ground) surface, driven by the design tokens
+ * (tokens.css) rather than the old blog BaseHead / BlogPost / BaseLayout.
+ *
+ * Layout model — the top bar is fixed and only the content scrolls, so the
+ * scrollbar lives on the content region, not the whole window. Any page that
+ * uses this gets that behaviour for free.
+ *
+ * Imports tokens.css (not global.css) to keep the twin/visitor colour system
+ * intact. Content that needs Tailwind utilities imports @styles/tailwind.css
+ * itself (its components already do); the `.stage { width: 100% }` below
+ * neutralises tailwind's `@layer base { main { width: 720px } }`.
+ */
+import '../styles/tokens.css';
+import { SITE } from '../consts';
+import InstrumentBar from '../components/twin/InstrumentBar.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  current?: string; // active nav link, e.g. '/blog'
+  ogType?: string;
+}
+
+const {
+  title,
+  description = SITE.description,
+  current = '/',
+  ogType = 'website',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" type="image/png" href={SITE.favicon} />
+    <link rel="canonical" href={canonicalURL} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body>
+    <InstrumentBar current={current} />
+    <div class="scroll">
+      <main class="stage">
+        <slot />
+      </main>
+    </div>
+
+    <style>
+      html {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        height: 100vh;
+        height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden; /* the page itself never scrolls… */
+        background: var(--ground);
+        color: var(--ink);
+        font-family: var(--font-sans);
+        font-size: 16px;
+        line-height: 1.6;
+      }
+      /* …only this region does — the scrollbar sits on the content, below the
+         fixed InstrumentBar. */
+      .scroll {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+      /* width:100% is load-bearing: content components pull in
+         @styles/tailwind.css, whose `@layer base { main { width: 720px } }`
+         would otherwise pin this <main>. */
+      .stage {
+        width: 100%;
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 0 clamp(var(--space-4), 4vw, var(--space-6)) var(--space-8);
+      }
+
+      @media print {
+        body {
+          height: auto;
+          overflow: visible;
+          display: block;
+        }
+        .scroll {
+          overflow: visible;
+        }
+      }
+    </style>
+
+    <!-- Print: hide the sticky top bar (a component with its own scoped styles,
+         so it has to be reached globally). -->
+    <style is:global>
+      @media print {
+        header.bar {
+          display: none !important;
+        }
+      }
+    </style>
+  </body>
+</html>

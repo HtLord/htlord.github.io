@@ -4,9 +4,31 @@ import '@styles/tailwind.css';
 const { data: resumeData } = Astro.props;
 ---
 {resumeData.summary && (
-  <div class="flex items-center">
-    <div class="mx-4 text-6xl">"</div>
-    <p class="">{ resumeData.summary }</p>
-    <div class="mx-4 text-6xl">"</div>
+  <div class="summary px-4 mb-8 print:mb-4">
+    <p class="quote">{ resumeData.summary }</p>
   </div>
 )}
+
+<style>
+  .summary {
+    border-left: 3px solid var(--twin-line);
+    padding-left: var(--space-4);
+  }
+  .quote {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    font-style: italic;
+    line-height: 1.62;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  @media print {
+    .summary {
+      border-left-color: #c9ab00;
+    }
+    .quote {
+      color: #000;
+    }
+  }
+</style>

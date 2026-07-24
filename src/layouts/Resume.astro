@@ -12,6 +12,7 @@ const resume = await getEntry('resume', id);
 const data = resume.data;
 ---
 <div class=`
+  resume-root
   flex flex-col
   `
 >
@@ -21,3 +22,37 @@ const data = resume.data;
   <Experience data={data} />
   <Education data={data} />
 </div>
+
+<style>
+  /*
+   * On screen the résumé now lives inside the twin site shell
+   * (about/index.astro: a var(--ground) body + centred `.stage`), so it flows
+   * directly on the themed page like the homepage's content — no self-
+   * contained card/surface is needed anymore (the whole page follows the
+   * light/dark theme). Colour comes from the design tokens on --ink etc.
+   */
+  .resume-root {
+    color: var(--ink);
+  }
+
+  /*
+   * Print: force ink-on-white regardless of the viewer's theme (tokens.css
+   * defines a dark theme by default; a printed page should never inherit
+   * that). Overriding the design tokens here — scoped to .resume-root,
+   * which every descendant reads var(--ink)/var(--surface)/etc from — is
+   * enough; no need to touch :root/tokens.css or affect any other page.
+   */
+  @media print {
+    .resume-root {
+      --ground: #ffffff;
+      --surface: #ffffff;
+      --surface-2: #ffffff;
+      --ink: #000000;
+      --muted: #333333;
+      --faint: #555555;
+      --line: #999999;
+      --line-strong: #666666;
+      color: #000;
+    }
+  }
+</style>

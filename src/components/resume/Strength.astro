@@ -10,11 +10,35 @@ const strengths = resumeData.data.strengths;
     title="Strength"
     printHidden="true"
 >
-  <div class="flex flex-col flex-wrap">
+  <div class="flex flex-wrap gap-2 pt-3">
       {
           strengths?.map(str => { return (
-             <div class="item font-bold">{str}</div>
+             <span class="item">{str}</span>
           )})
       }
   </div>
 </Section>
+
+<style>
+  .item {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--visitor-ink);
+    background: var(--visitor-tint);
+    border: 1px solid var(--visitor-line);
+    border-radius: var(--radius-full);
+    padding: 4px 11px;
+    line-height: 1.4;
+  }
+
+  @media print {
+    .item {
+      color: #000;
+      background: #fff;
+      border-color: #999;
+    }
+  }
+</style>
