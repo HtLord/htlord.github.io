@@ -4,7 +4,8 @@ const href = id ? `/resume/printable/${id}` : `/resume/printable`;
 ---
 <div
     class="
-    w-16 h-16 fixed bottom-[5%] right-[5%]
+    print-fab
+    w-16 h-16
     flex justify-center items-center
     rounded-full
     shadow-lg shadow-gray
@@ -18,3 +19,23 @@ const href = id ? `/resume/printable/${id}` : `/resume/printable`;
       Print!
   </a>
 </div>
+
+<style>
+  /*
+   * Anchor the button to the right edge of the centred `.stage` rather than the
+   * viewport's far right. --stage-max is published on <body> by TwinLayout; on a
+   * wide screen (100vw - stage)/2 is the whitespace beside the stage, so the
+   * button lands right at the content's right boundary. On narrow screens that
+   * term goes to ~0, so max() falls back to the page gutter (matching the
+   * stage's own clamp() padding).
+   */
+  .print-fab {
+    position: fixed;
+    bottom: 5%;
+    right: max(
+      clamp(var(--space-4), 4vw, var(--space-6)),
+      calc((100vw - var(--stage-max, 880px)) / 2)
+    );
+    z-index: 30;
+  }
+</style>

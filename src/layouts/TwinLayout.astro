@@ -24,6 +24,7 @@ interface Props {
   description?: string;
   current?: string; // active nav link, e.g. '/blog'
   ogType?: string;
+  maxWidth?: string; // content width cap for `.stage`, e.g. '1040px' for grids
 }
 
 const {
@@ -31,6 +32,7 @@ const {
   description = SITE.description,
   current = '/',
   ogType = 'website',
+  maxWidth = '880px',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -50,7 +52,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:description" content={description} />
     <meta name="generator" content={Astro.generator} />
   </head>
-  <body>
+  <body style={`--stage-max: ${maxWidth}`}>
     <InstrumentBar current={current} />
     <div class="scroll">
       <main class="stage">
@@ -88,7 +90,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
          would otherwise pin this <main>. */
       .stage {
         width: 100%;
-        max-width: 760px;
+        max-width: var(--stage-max, 880px);
         margin: 0 auto;
         padding: 0 clamp(var(--space-4), 4vw, var(--space-6)) var(--space-8);
       }
