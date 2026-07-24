@@ -1,32 +1,103 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import getTagByCollection from "../../libs/astro/getTagByCollection";
-import getPosts from "../../libs/astro/getPosts";
-import Clip from "../../components/Chip.astro";
+/**
+ * tags/index.astro — the tag directory, in the digital-twin site's shell.
+ *
+ * Uses the shared TwinLayout (InstrumentBar + centred `.stage` + content-scoped
+ * scroll) so /tags reads as part of the twin site. Tag discovery/logic is
+ * unchanged — still getPosts + getTagByCollection, still one chip per tag
+ * linking to /tags/<tag>/1.
+ *
+ * The chips used to render through the shared Chip.astro (Tailwind gradient
+ * pills), but that component doesn't forward a `class` prop to its root
+ * element, so the local `.tag` styling below couldn't reach it. Chip.astro is
+ * shared and off-limits to edit, so the chips are rendered as plain <a> tags
+ * here instead, restyled entirely through the local `.tag` class.
+ */
+import TwinLayout from '../../layouts/TwinLayout.astro';
+import getTagByCollection from '../../libs/astro/getTagByCollection';
+import getPosts from '../../libs/astro/getPosts';
 
 const posts = await getPosts('blog');
 const tags = [...getTagByCollection(posts)];
+
+const description = 'Every tag used across the writing — pick one to see what is filed under it.';
 ---
-<BaseLayout>
-    <h1>Go to...</h1>
+<TwinLayout title="Tags · 黃偉程 · htlord" description={description} current="/blog">
+    <section class="hero">
+        <h1>Go to&hellip;</h1>
+        <p class="subline">
+            Every topic label used across the writing. Pick a tag to see what's filed under it.
+            Prefer the full list? <a href="/blog">All posts →</a>
+        </p>
+    </section>
+
     <div class="tags">
         {tags.map((tag) => (
-            <Clip class="tag" value={tag}/>
+            <a class="tag" href={`/tags/${tag}/1`}>{tag}</a>
         ))}
     </div>
-</BaseLayout>
-<style>
-    .tags {
-        display: flex;
-        flex-wrap: wrap;
-    }
 
-    .tag {
-        margin: 0.25em;
-        border: dotted 1px #a1a1a1;
-        border-radius: .5em;
-        padding: .5em 1em;
-        font-size: 1.15em;
-        background-color: #F8FCFD;
-    }
-</style>
+    <style>
+        .hero {
+            padding: var(--space-6) 0 var(--space-2);
+        }
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(28px, 5vw, 42px);
+            line-height: 1.15;
+            margin: 0 0 var(--space-3);
+            color: var(--ink);
+        }
+        .hero .subline {
+            font-family: var(--font-sans);
+            font-size: 16px;
+            color: var(--muted);
+            max-width: 58ch;
+            margin: 0;
+        }
+        .hero .subline a {
+            color: var(--visitor-ink);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .hero .subline a:hover {
+            text-decoration: underline;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+            padding: var(--space-4) 0 var(--space-7);
+        }
+
+        .tag {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            line-height: 1;
+            color: var(--muted);
+            text-decoration: none;
+            background: var(--surface);
+            border: 1px solid var(--line-strong);
+            border-radius: var(--radius-full);
+            padding: 8px 14px;
+            transition:
+                transform 0.12s ease,
+                border-color 0.12s ease,
+                color 0.12s ease,
+                background 0.12s ease;
+        }
+        .tag:hover {
+            color: var(--twin-ink);
+            border-color: var(--twin-line);
+            background: var(--twin-tint);
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 560px) {
+            .hero h1 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</TwinLayout>

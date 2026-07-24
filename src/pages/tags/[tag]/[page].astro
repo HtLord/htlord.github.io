@@ -1,7 +1,18 @@
 ---
-import BaseLayout from "../../../layouts/BaseLayout.astro";
+/**
+ * tags/[tag]/[page].astro — the paginated post list for one tag, in the
+ * digital-twin site's shell.
+ *
+ * Tag filtering + pagination logic is unchanged: still astroUtil.getPostInfoBy
+ * for the per-tag filter and Astro's `paginate` with SITE.pageSize. The only
+ * addition is enriching each filtered post with its pubDate (looked up from
+ * the already-fetched full post list) purely for display — it doesn't affect
+ * which posts match, their order, or the resulting page count/URLs.
+ */
+import TwinLayout from '../../../layouts/TwinLayout.astro';
+import Button from '../../../components/twin/Button.astro';
 import astroUtil from '../../../libs/astro';
-import {SITE} from "../../../consts";
+import { SITE } from '../../../consts';
 
 export async function getStaticPaths({ paginate }: any) {
     const posts =
@@ -15,8 +26,10 @@ export async function getStaticPaths({ paginate }: any) {
     return [...tags]
         .flatMap((tag) => {
             const filteredPosts =
-                astroUtil.getPostInfoBy(posts, tag);
-            console.log(filteredPosts);
+                astroUtil.getPostInfoBy(posts, tag).map((post) => {
+                    const source = posts.find((p) => p.slug === post.slug);
+                    return { ...post, pubDate: source?.data.pubDate };
+                });
             return paginate(
                 filteredPosts,
                 {
@@ -28,19 +41,142 @@ export async function getStaticPaths({ paginate }: any) {
         });
 }
 
-const { tag }= Astro.params;
+const { tag } = Astro.params;
 const { page } = Astro.props;
----
-<BaseLayout>
-    <h1>Go to... {tag} at {page.currentPage}</h1>
-    <ul>
-        {page.data.map((post: any) =>
-                <li>
-                    <a href=`/blog/${post.slug}`>{post.title}</a>
-                </li>
-        )}
-    </ul>
-    {page.url.prev ? <a href={page.url.prev}>Previous</a> : null}
-    {page.url.next ? <a href={page.url.next}>Next</a> : null}
 
-</BaseLayout>
+const formatDate = (date?: Date) =>
+    date
+        ? date.toLocaleDateString('en-us', { year: 'numeric', month: 'short', day: 'numeric' })
+        : null;
+
+const description = `Posts tagged "${tag}" — page ${page.currentPage} of ${page.lastPage}.`;
+---
+<TwinLayout title={`${tag} · Tags · 黃偉程 · htlord`} description={description} current="/blog">
+    <section class="hero">
+        <p class="eyebrow">Tag</p>
+        <h1>{tag}</h1>
+        <p class="subline">
+            {page.total} post{page.total === 1 ? '' : 's'} · page {page.currentPage} of {page.lastPage}
+            · <a href="/tags">All tags →</a>
+        </p>
+    </section>
+
+    <ul class="posts">
+        {page.data.map((post: any) => (
+            <li>
+                <a class="post-link" href={`/blog/${post.slug}`}>
+                    <span class="post-title">{post.title}</span>
+                    {formatDate(post.pubDate) && <span class="post-date">{formatDate(post.pubDate)}</span>}
+                </a>
+            </li>
+        ))}
+    </ul>
+
+    {page.lastPage > 1 && (
+        <nav class="pager">
+            {page.url.prev ? (
+                <Button href={page.url.prev} variant="secondary">← Previous</Button>
+            ) : (
+                <span aria-hidden="true"></span>
+            )}
+            {page.url.next ? (
+                <Button href={page.url.next} variant="secondary">Next →</Button>
+            ) : (
+                <span aria-hidden="true"></span>
+            )}
+        </nav>
+    )}
+
+    <style>
+        .hero {
+            padding: var(--space-6) 0 var(--space-2);
+        }
+        .eyebrow {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--faint);
+            margin: 0 0 var(--space-2);
+        }
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(28px, 5vw, 42px);
+            line-height: 1.15;
+            margin: 0 0 var(--space-3);
+            color: var(--ink);
+        }
+        .hero .subline {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--muted);
+            max-width: 58ch;
+            margin: 0;
+        }
+        .hero .subline a {
+            color: var(--visitor-ink);
+            font-family: var(--font-mono);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .hero .subline a:hover {
+            text-decoration: underline;
+        }
+
+        .posts {
+            list-style: none;
+            margin: 0;
+            padding: var(--space-2) 0 var(--space-6);
+            border-top: 1px solid var(--line);
+        }
+        .posts li {
+            border-bottom: 1px solid var(--line);
+        }
+        .post-link {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: var(--space-4);
+            padding: var(--space-4) 0;
+            text-decoration: none;
+            color: inherit;
+        }
+        .post-title {
+            font-family: var(--font-serif);
+            font-size: 18px;
+            line-height: 1.35;
+            color: var(--ink);
+            transition: color 0.12s ease;
+        }
+        .post-date {
+            font-family: var(--font-mono);
+            font-size: 12.5px;
+            color: var(--faint);
+            white-space: nowrap;
+            font-variant-numeric: tabular-nums;
+        }
+        .post-link:hover .post-title {
+            color: var(--visitor-ink);
+        }
+
+        .pager {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-3);
+            padding-top: var(--space-5);
+        }
+
+        @media (max-width: 560px) {
+            .hero h1 {
+                font-size: 26px;
+            }
+            .post-link {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--space-1);
+            }
+        }
+    </style>
+</TwinLayout>
