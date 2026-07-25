@@ -39,6 +39,9 @@
  * once and re-applied manually.
  */
 
+import { marked } from 'marked';
+import DOMPurify from 'dompurify';
+
 type ConversationState = 'idle' | 'guarding' | 'generating' | 'done' | 'refused' | 'error';
 
 interface AnswerSegment {
@@ -223,6 +226,61 @@ function parseSseEvent(raw: string): { event: string; data: SseEventData } | nul
 }
 
 // ---------------------------------------------------------------------------
+// Markdown rendering (safe subset) — shared by the live streaming/finalize
+// path below. `marked` turns a small Markdown subset into HTML; DOMPurify
+// then strips that HTML down to an allowlist before it's ever assigned to
+// `.innerHTML`. Model output is NEVER trusted as HTML directly — only the
+// DOMPurify-sanitized string is.
+// ---------------------------------------------------------------------------
+
+marked.setOptions({ gfm: true, breaks: true });
+
+const MD_ALLOWED_TAGS = ['p', 'br', 'strong', 'em', 'code', 'pre', 'ul', 'ol', 'li', 'a', 'blockquote'];
+const MD_ALLOWED_ATTR = ['href', 'title', 'class'];
+// http(s)/mailto only, plus in-page (#…) and root-relative (/…) links.
+// Blocks `javascript:`/`data:`/etc. even though DOMPurify's own default
+// ALLOWED_URI_REGEXP already excludes those — belt and suspenders on the one
+// attribute (href) that can execute code.
+const SAFE_HREF_RE = /^(https?:|mailto:|#|\/(?!\/))/i;
+
+// Runs once at module load. Adds rel/target to every sanitized <a> (not
+// something a DOMPurify ALLOWED_ATTR entry can express) and double-checks
+// href against SAFE_HREF_RE, stripping anything that doesn't match.
+DOMPurify.addHook('afterSanitizeAttributes', (node) => {
+  if (node.tagName !== 'A') return;
+  const href = node.getAttribute('href');
+  if (!href || !SAFE_HREF_RE.test(href)) {
+    node.removeAttribute('href');
+    return;
+  }
+  node.setAttribute('rel', 'noopener');
+  node.setAttribute('target', '_blank');
+});
+
+/**
+ * Render a safe Markdown subset (bold/italic/inline code/fenced code/lists/
+ * links/paragraphs/line breaks) to a sanitized HTML string. No raw HTML and
+ * no images pass through — see MD_ALLOWED_TAGS/MD_ALLOWED_ATTR above. Never
+ * assign unsanitized model output to innerHTML; only this function's return
+ * value is safe to.
+ */
+function renderMarkdownSubset(md: string): string {
+  const html = marked.parse(md, { async: false });
+  const clean = DOMPurify.sanitize(html, { ALLOWED_TAGS: MD_ALLOWED_TAGS, ALLOWED_ATTR: MD_ALLOWED_ATTR });
+  // This page doesn't load the site's Tailwind base styles (see index.astro's
+  // header comment / TwinLayout) so a bare <p> would carry the browser's
+  // default ~1em margin into the tightly-spaced chat bubble. Zero that out,
+  // keeping a small gap only *between* multiple paragraphs, never at the top
+  // or bottom of the bubble's text.
+  const scratch = document.createElement('div');
+  scratch.innerHTML = clean;
+  scratch.querySelectorAll('p').forEach((p, i) => {
+    (p as HTMLElement).style.margin = i === 0 ? '0' : '0.75em 0 0';
+  });
+  return scratch.innerHTML;
+}
+
+// ---------------------------------------------------------------------------
 // Init
 // ---------------------------------------------------------------------------
 
@@ -301,6 +359,57 @@ function init(): void {
     mark.textContent = text;
     if (citeCidAttr) mark.setAttribute(citeCidAttr.name, citeCidAttr.value);
     return mark;
+  }
+
+  // Finds `phrase` (a raw slice of the Markdown source, pre-render) across
+  // the rendered text under `root` and wraps the matching text in one or
+  // more makeCiteMark(...) elements. Searches across the *concatenation* of
+  // all descendant text nodes, not node-by-node: a cited phrase the model
+  // wrapped in **bold**/`code` lands in its own <strong>/<code> text node,
+  // so it may not be contiguous within a single node even though it reads
+  // as one run of text. If the match itself straddles an element boundary,
+  // it's wrapped as multiple sibling <mark>s (one per intersected node) —
+  // CitedFact's `box-decoration-break: clone` is exactly what makes that
+  // read as one seamless highlight. If the phrase isn't found at all, it's
+  // left unmarked — the source id still surfaces via
+  // finalizeSources/extractCitedSources.
+  function wrapCitedPhrase(root: HTMLElement, rawPhrase: string, source: string): void {
+    // Strip inline-emphasis syntax the renderer already consumed into tags
+    // (**bold**, __bold__, `code`, *italic*, _italic_) so the search string
+    // matches what's actually in the rendered text nodes.
+    const phrase = rawPhrase.replace(/\*\*|__|`|\*|_/g, '');
+    if (!phrase) return;
+
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    const textNodes: Text[] = [];
+    let n = walker.nextNode();
+    while (n) {
+      textNodes.push(n as Text);
+      n = walker.nextNode();
+    }
+
+    let full = '';
+    const nodeStarts: number[] = [];
+    for (const node of textNodes) {
+      nodeStarts.push(full.length);
+      full += node.data;
+    }
+    const matchStart = full.indexOf(phrase);
+    if (matchStart === -1) return;
+    const matchEnd = matchStart + phrase.length;
+
+    textNodes.forEach((node, i) => {
+      const nodeStart = nodeStarts[i];
+      const nodeEnd = nodeStart + node.data.length;
+      const from = Math.max(matchStart, nodeStart);
+      const to = Math.min(matchEnd, nodeEnd);
+      if (from >= to) return; // this node isn't part of the match
+      const localFrom = from - nodeStart;
+      const localTo = to - nodeStart;
+      if (localTo < node.data.length) node.splitText(localTo);
+      const middle = localFrom > 0 ? node.splitText(localFrom) : node;
+      middle.replaceWith(makeCiteMark(middle.data, source));
+    });
   }
 
   // -- thread bubbles ----------------------------------------------------
@@ -471,6 +580,85 @@ function init(): void {
     return [...ids];
   }
 
+  // Inline citations (finalize only — see runLive below). The wire format
+  // only marks the *end* of a cited claim (`...claim [fact: id]`), not its
+  // start, so the "cited phrase" has to be inferred. Scan backward from each
+  // marker for a clause boundary (sentence/comma punctuation, ASCII or CJK)
+  // or a MAX_PHRASE_CHARS cap, snapping outward to a word boundary if the cap
+  // is what stopped the scan. This mirrors the mock's short, specific
+  // {text, cite} highlights (a stat, a count) reasonably well without ever
+  // running away and highlighting a whole sentence.
+  const PHRASE_BREAK_RE = /[.,;:!?、，。！？；：\n"'“”‘’「」『』()（）]/;
+  const MAX_PHRASE_CHARS = 40;
+
+  // `.`/`,` don't count as a break when they sit between two digits — a
+  // decimal point or thousands separator (`~0.5s`, `10,000+`) is part of the
+  // value, not a clause boundary.
+  function isPhraseBreak(s: string, i: number): boolean {
+    const ch = s[i];
+    if (!PHRASE_BREAK_RE.test(ch)) return false;
+    if ((ch === '.' || ch === ',') && /[0-9]/.test(s[i - 1] ?? '') && /[0-9]/.test(s[i + 1] ?? '')) {
+      return false;
+    }
+    return true;
+  }
+
+  function splitTrailingPhrase(between: string): { prefix: string; phrase: string } {
+    let contentEnd = between.length;
+    while (contentEnd > 0 && /\s/.test(between[contentEnd - 1])) contentEnd--;
+    if (contentEnd === 0) return { prefix: between, phrase: '' };
+
+    let start = contentEnd;
+    let scanned = 0;
+    while (start > 0 && scanned < MAX_PHRASE_CHARS && !isPhraseBreak(between, start - 1)) {
+      start--;
+      scanned++;
+    }
+    // Hit the char cap mid-word (not a boundary char) — snap forward to the
+    // next space so the phrase doesn't start mid-word.
+    if (scanned === MAX_PHRASE_CHARS && start > 0 && !/\s/.test(between[start - 1])) {
+      const nextSpace = between.indexOf(' ', start);
+      if (nextSpace !== -1 && nextSpace < contentEnd) start = nextSpace + 1;
+    }
+    const phrase = between.slice(start, contentEnd).trim();
+    const prefix = phrase ? between.slice(0, start) : between;
+    return { prefix, phrase };
+  }
+
+  // Parses the raw (marker-inclusive) answer into the same {text, cite}[]
+  // shape the mock's MOCK_ANSWERS use, so finalize can drive both through
+  // the same makeCiteMark(...) path.
+  function toAnswerSegments(raw: string): AnswerSegment[] {
+    const markerRe = /\s*\[fact:\s*([^\]]*)\]/gi;
+    const segments: AnswerSegment[] = [];
+    let cursor = 0;
+    let m: RegExpExecArray | null;
+    while ((m = markerRe.exec(raw)) !== null) {
+      const between = raw.slice(cursor, m.index);
+      const id = m[1].trim();
+      const { prefix, phrase } = splitTrailingPhrase(between);
+      if (prefix) segments.push({ text: prefix });
+      if (phrase) segments.push(id ? { text: phrase, cite: id } : { text: phrase });
+      cursor = markerRe.lastIndex;
+    }
+    const tail = raw.slice(cursor);
+    if (tail) segments.push({ text: tail });
+    return segments;
+  }
+
+  // Renders the sanitized Markdown for the whole answer, then wraps each
+  // cited phrase in a makeCiteMark(...) span in place. One marked.parse()
+  // call over the full text keeps block structure (paragraphs/lists/fences)
+  // intact, rather than parsing citation-delimited fragments independently
+  // and risking half-open Markdown at each boundary.
+  function renderFinalAnswer(msgText: HTMLElement, rawAnswer: string, markdownSource: string): void {
+    msgText.innerHTML = renderMarkdownSubset(markdownSource);
+    for (const seg of toAnswerSegments(rawAnswer)) {
+      const phrase = seg.cite ? seg.text.trim() : '';
+      if (phrase) wrapCitedPhrase(msgText, phrase, seg.cite as string);
+    }
+  }
+
   // -- live path ----------------------------------------------------------
 
   async function runLive(question: string, thinkingEl: HTMLElement): Promise<void> {
@@ -539,7 +727,14 @@ function init(): void {
 
         if (evt.event === 'token' && typeof evt.data.token === 'string') {
           rawAnswer += evt.data.token;
-          refs.msgText.textContent = stripFactMarkers(rawAnswer, true);
+          // Re-render the whole answer-so-far every token: cheap at
+          // chat-answer length, and it's what makes half-open Markdown (an
+          // unclosed `**`, an unclosed fence) tolerable — marked just prints
+          // the stray `*`/backtick literally instead of leaving broken markup
+          // on screen. No citation marks mid-stream (see renderFinalAnswer,
+          // called once on finalize below); holdPartial above keeps a
+          // trailing `[fact: <partial...` from ever flashing either.
+          refs.msgText.innerHTML = renderMarkdownSubset(stripFactMarkers(rawAnswer, true));
           scrollThreadToEnd();
         } else if (evt.event === 'error') {
           streamError = (typeof evt.data.message === 'string' && evt.data.message) ||
@@ -573,9 +768,11 @@ function init(): void {
       return;
     }
 
-    refs.msgText.textContent = finalText.length > 0
-      ? finalText
-      : 'The twin stream ended without saying anything — try rephrasing the question.';
+    if (finalText.length > 0) {
+      renderFinalAnswer(refs.msgText, rawAnswer, finalText);
+    } else {
+      refs.msgText.textContent = 'The twin stream ended without saying anything — try rephrasing the question.';
+    }
     finalizeSources(refs, extractCitedSources(rawAnswer));
     history.push({ role: 'assistant', content: refs.msgText.textContent ?? '' });
     setState('done');
