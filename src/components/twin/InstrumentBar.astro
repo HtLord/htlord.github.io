@@ -34,6 +34,10 @@ const {
   ],
   current = '/',
 } = Astro.props;
+
+// Mobile dropdown trigger shows the current tab's own label (falls back to
+// "Menu" if `current` doesn't match any link's href).
+const currentLabel = links.find((link) => link.href === current)?.label ?? 'Menu';
 ---
 
 <header class="bar">
@@ -50,6 +54,23 @@ const {
       <a href={link.href} class:list={{ on: link.href === current }}>{link.label}</a>
     ))}
   </nav>
+  <!--
+    Mobile-only dropdown (≤560px, see media query below). Desktop hides this
+    entirely and keeps the flat <nav> above unchanged. CSS-only via
+    <details>/<summary> so it works with no JS; the inline script below is
+    a pure enhancement (outside-tap/Escape close + explicit aria-expanded).
+  -->
+  <details class="nav-menu">
+    <summary class="nav-menu-trigger">
+      <span class="nav-menu-label">{currentLabel}</span>
+      <span class="nav-menu-caret" aria-hidden="true">▾</span>
+    </summary>
+    <nav class="nav-menu-panel">
+      {links.map((link) => (
+        <a href={link.href} class:list={{ on: link.href === current }}>{link.label}</a>
+      ))}
+    </nav>
+  </details>
 </header>
 
 <style>
@@ -147,9 +168,117 @@ const {
     background: var(--twin-tint);
   }
 
+  /* Mobile dropdown trigger — hidden entirely on desktop so the flat <nav>
+     above renders exactly as before. */
+  .nav-menu {
+    display: none;
+  }
+
   @media (max-width: 560px) {
-    nav a:not(.on) {
+    /* Hide the flat row (but not the dropdown's own nested <nav> panel)
+       and show the dropdown trigger in its place. */
+    nav:not(.nav-menu-panel) {
       display: none;
+    }
+
+    .nav-menu {
+      display: block;
+      position: relative;
+      margin-left: auto;
+    }
+
+    .nav-menu-trigger {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      letter-spacing: 0.01em;
+      color: var(--twin-ink);
+      background: var(--twin-tint);
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+    }
+    .nav-menu-trigger::-webkit-details-marker {
+      display: none;
+    }
+    .nav-menu-trigger::marker {
+      content: '';
+    }
+
+    .nav-menu-caret {
+      font-size: 10px;
+      transform-origin: 50% 45%;
+    }
+    .nav-menu[open] .nav-menu-caret {
+      transform: rotate(180deg);
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .nav-menu-caret {
+        transition: transform 0.15s ease;
+      }
+    }
+
+    .nav-menu-panel {
+      position: absolute;
+      top: calc(100% + 6px);
+      right: 0;
+      min-width: 150px;
+      margin: 0;
+      padding: 6px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.06),
+        0 14px 34px -22px rgba(0, 0, 0, 0.34);
+    }
+    /* Only declare the open layout — when closed, the UA stylesheet already
+       hides non-summary <details> children, so we don't fight it here. */
+    .nav-menu[open] .nav-menu-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 2px;
+    }
+    .nav-menu-panel a {
+      display: block;
+      width: 100%;
+      padding: 9px 10px;
     }
   }
 </style>
+
+<script>
+  // Pure enhancement over the native <details>/<summary> disclosure: closing
+  // on outside-tap/Escape, and mirroring aria-expanded explicitly. None of
+  // this is required for the menu to work — with JS disabled it still opens
+  // and closes natively, and links still navigate normally.
+  document.querySelectorAll('.nav-menu').forEach((menu) => {
+    if (!(menu instanceof HTMLDetailsElement)) return;
+    const summary = menu.querySelector('summary');
+    if (!summary) return;
+
+    const syncExpanded = () => {
+      summary.setAttribute('aria-expanded', String(menu.open));
+    };
+    syncExpanded();
+    menu.addEventListener('toggle', syncExpanded);
+
+    document.addEventListener('click', (event) => {
+      if (menu.open && event.target instanceof Node && !menu.contains(event.target)) {
+        menu.open = false;
+      }
+    });
+
+    menu.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && menu.open) {
+        menu.open = false;
+        summary.focus();
+      }
+    });
+  });
+</script>
